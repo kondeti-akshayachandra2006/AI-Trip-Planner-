@@ -11,13 +11,18 @@ function buildUserResponse(user) {
     id: user._id,
     name: user.name,
     email: user.email,
+    phone: user.phone,
     age: user.age,
     gender: user.gender,
+    location: user.location || user.country,
     country: user.country,
     travelStyle: user.travelStyle,
+    preferredTravelStyle: user.preferredTravelStyle,
     budget: user.budget,
     profilePhoto: user.profilePhoto,
     bio: user.bio,
+    emergencyContact: user.emergencyContact,
+    emergencyPhone: user.emergencyPhone,
     preferences: user.preferences,
     favoriteLocations: user.favoriteLocations,
     savedTrips: user.savedTrips,
@@ -68,17 +73,27 @@ router.get('/profile', requireAuth, async (req, res) => {
 
 router.put('/profile', requireAuth, async (req, res) => {
   try {
-    const updates = (({ name, age, gender, country, travelStyle, budget, profilePhoto, bio, preferences }) => ({
+    const updates = (({ name, phone, age, gender, location, country, travelStyle, preferredTravelStyle, budget, profilePhoto, bio, preferences, emergencyContact, emergencyPhone }) => ({
       name,
+      phone,
       age,
       gender,
+      location,
       country,
       travelStyle,
+      preferredTravelStyle,
       budget,
       profilePhoto,
       bio,
+      emergencyContact,
+      emergencyPhone,
       preferences,
     }))(req.body);
+
+    // Keep backwards-compatible country field while also supporting location.
+    if (updates.location && !updates.country) {
+      updates.country = updates.location;
+    }
 
     const user = await User.findByIdAndUpdate(req.user.id, updates, { new: true, runValidators: true });
     if (!user) return res.status(404).json({ message: 'User not found' });

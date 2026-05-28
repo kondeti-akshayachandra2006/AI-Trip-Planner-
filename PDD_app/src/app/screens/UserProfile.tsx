@@ -22,9 +22,17 @@ export default function UserProfile() {
 
         <div className="text-center">
           <div className="relative inline-block mb-4">
-            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-4xl">
-              👤
-            </div>
+            {user?.profilePhoto ? (
+              <img
+                src={user.profilePhoto}
+                alt="Profile"
+                className="w-24 h-24 rounded-full border-4 border-white object-cover"
+              />
+            ) : (
+              <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-4xl text-white">
+                {user?.name?.split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase() || '👤'}
+              </div>
+            )}
             <button className="absolute bottom-0 right-0 w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center">
               <Edit className="w-4 h-4" />
             </button>
@@ -49,6 +57,27 @@ export default function UserProfile() {
             <div className="text-xs text-muted-foreground">Style</div>
           </GlassCard>
         </div>
+
+        <GlassCard className="mb-6 p-6">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-xs text-muted-foreground uppercase mb-1">Phone</p>
+              <p className="font-medium">{user?.phone || 'Not set'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase mb-1">Location</p>
+              <p className="font-medium">{user?.location || user?.country || 'Not set'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase mb-1">Age</p>
+              <p className="font-medium">{user?.age ? user.age : 'Not set'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase mb-1">Gender</p>
+              <p className="font-medium capitalize">{user?.gender || 'Not set'}</p>
+            </div>
+          </div>
+        </GlassCard>
 
         <div className="space-y-3 mb-6">
           <GlassCard onClick={() => navigate('/saved-trips')} className="flex items-center justify-between cursor-pointer">

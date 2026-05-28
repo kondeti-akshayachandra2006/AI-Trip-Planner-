@@ -42,11 +42,36 @@ const logger = {
 
 const app = express();
 const server = http.createServer(app);
+
+const rawClientOrigin = process.env.CLIENT_ORIGIN ?? '*';
+const clientOrigins = rawClientOrigin.split(',').map((origin) => origin.trim()).filter(Boolean);
+const allowAnyOrigin = clientOrigins.includes('*');
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowAnyOrigin || clientOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+    if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+      callback(null, true);
+      return;
+    }
+    callback(new Error(`CORS policy does not allow access from origin: ${origin}`));
+  },
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  credentials: true,
+};
+
 const io = new Server(server, {
-  cors: { origin: process.env.CLIENT_ORIGIN ?? '*', methods: ['GET', 'POST'] },
+  cors: {
+    origin: allowAnyOrigin ? '*' : clientOrigins,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  },
 });
 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN ?? '*' }));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use((req, res, next) => {

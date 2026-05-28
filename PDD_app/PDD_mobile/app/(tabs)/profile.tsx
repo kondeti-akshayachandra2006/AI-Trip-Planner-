@@ -42,6 +42,16 @@ export default function ProfileScreen() {
         <View style={styles.row}><Text style={styles.label}>Completed trips</Text><Text style={styles.value}>{completedTrips.length}</Text></View>
       </GlassCard>
 
+      <SectionHeader title="Personal Information" />
+      <GlassCard style={styles.infoCard}>
+        {user.phone && <View style={styles.infoRow}><Text style={styles.infoLabel}>Phone</Text><Text style={styles.infoValue}>{user.phone}</Text></View>}
+        {user.age && <View style={styles.infoRow}><Text style={styles.infoLabel}>Age</Text><Text style={styles.infoValue}>{user.age}</Text></View>}
+        {user.gender && <View style={styles.infoRow}><Text style={styles.infoLabel}>Gender</Text><Text style={styles.infoValue}>{user.gender.charAt(0).toUpperCase() + user.gender.slice(1)}</Text></View>}
+        {user.emergencyContact && <View style={styles.infoRow}><Text style={styles.infoLabel}>Emergency Contact</Text><Text style={styles.infoValue}>{user.emergencyContact}</Text></View>}
+        {user.emergencyPhone && <View style={styles.infoRow}><Text style={styles.infoLabel}>Emergency Phone</Text><Text style={styles.infoValue}>{user.emergencyPhone}</Text></View>}
+        {user.preferredTravelStyle && <View style={styles.infoRow}><Text style={styles.infoLabel}>Travel Style</Text><Text style={styles.infoValue}>{user.preferredTravelStyle.charAt(0).toUpperCase() + user.preferredTravelStyle.slice(1)}</Text></View>}
+      </GlassCard>
+
       <SectionHeader title="Travel preferences" />
       <View style={styles.tags}>{user.preferences.map((pref) => (<View key={pref} style={styles.tag}><Text style={styles.tagText}>{pref}</Text></View>))}</View>
       <SectionHeader title="Favorite destinations" />
@@ -83,6 +93,11 @@ const styles = StyleSheet.create({
   row: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
   label: { color: travelColors.muted, fontSize: 14, fontWeight: '700' },
   value: { color: travelColors.ink, fontSize: 16, fontWeight: '900' },
+  infoCard: { gap: 0, marginBottom: 16 },
+  infoRow: { alignItems: 'center', borderBottomColor: travelColors.line, borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 12 },
+  infoRow_last: { borderBottomWidth: 0 },
+  infoLabel: { color: travelColors.muted, fontSize: 14, fontWeight: '700' },
+  infoValue: { color: travelColors.ink, fontSize: 14, fontWeight: '800' },
   tags: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 16 },
   tag: { backgroundColor: '#fff', borderColor: travelColors.line, borderRadius: 18, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 10 },
   tagText: { color: travelColors.ink, fontSize: 13, fontWeight: '800' },

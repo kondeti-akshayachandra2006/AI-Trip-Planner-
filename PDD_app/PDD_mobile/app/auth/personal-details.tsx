@@ -1,37 +1,50 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useAuth } from '@/services/authService';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View, Modal } from 'react-native';
 import { travelColors } from '@/components/travel/TravelTheme';
+import { useAuth } from '@/services/authService';
+import { GlassCard } from '@/components/travel/GlassCard';
 
 const GENDERS = ['male', 'female', 'other'];
 const TRAVEL_STYLES = ['budget', 'comfort', 'luxury', 'adventure'];
 
-export default function EditProfileScreen() {
+export default function PersonalDetailsScreen() {
   const { user, updateProfile } = useAuth();
-  const [name, setName] = useState(user?.name ?? '');
-  const [email, setEmail] = useState(user?.email ?? '');
   const [phone, setPhone] = useState(user?.phone ?? '');
   const [age, setAge] = useState(user?.age ? String(user.age) : '');
   const [gender, setGender] = useState(user?.gender ?? '');
   const [emergencyContact, setEmergencyContact] = useState(user?.emergencyContact ?? '');
   const [emergencyPhone, setEmergencyPhone] = useState(user?.emergencyPhone ?? '');
   const [travelStyle, setTravelStyle] = useState(user?.preferredTravelStyle ?? '');
-  const [preferences, setPreferences] = useState(user?.preferences.join(', ') ?? '');
-  const [favorites, setFavorites] = useState(user?.favorites.join(', ') ?? '');
   const [isLoading, setIsLoading] = useState(false);
   const [showGenderModal, setShowGenderModal] = useState(false);
   const [showTravelStyleModal, setShowTravelStyleModal] = useState(false);
   const [error, setError] = useState('');
 
   const validateForm = () => {
-    if (!name.trim()) {
-      setError('Name is required');
+    if (!phone.trim()) {
+      setError('Phone number is required');
       return false;
     }
-    if (!email.trim()) {
-      setError('Email is required');
+    if (!age || parseInt(age) < 10 || parseInt(age) > 120) {
+      setError('Please enter a valid age (10-120)');
+      return false;
+    }
+    if (!gender) {
+      setError('Please select a gender');
+      return false;
+    }
+    if (!emergencyContact.trim()) {
+      setError('Emergency contact name is required');
+      return false;
+    }
+    if (!emergencyPhone.trim()) {
+      setError('Emergency phone number is required');
+      return false;
+    }
+    if (!travelStyle) {
+      setError('Please select a travel style');
       return false;
     }
     return true;
@@ -44,20 +57,17 @@ export default function EditProfileScreen() {
     setIsLoading(true);
     try {
       await updateProfile({
-        name: name.trim() || user?.name || '',
-        email: email.trim() || user?.email || '',
-        phone: phone.trim() || undefined,
-        age: age ? parseInt(age) : undefined,
-        gender: (gender as 'male' | 'female' | 'other') || undefined,
-        emergencyContact: emergencyContact.trim() || undefined,
-        emergencyPhone: emergencyPhone.trim() || undefined,
-        preferredTravelStyle: (travelStyle as 'budget' | 'comfort' | 'luxury' | 'adventure') || undefined,
-        preferences: preferences.split(',').map((item) => item.trim()).filter(Boolean),
-        favorites: favorites.split(',').map((item) => item.trim()).filter(Boolean),
+        phone: phone.trim(),
+        age: parseInt(age),
+        gender: gender as 'male' | 'female' | 'other',
+        emergencyContact: emergencyContact.trim(),
+        emergencyPhone: emergencyPhone.trim(),
+        preferredTravelStyle: travelStyle as 'budget' | 'comfort' | 'luxury' | 'adventure',
+        personalDetailsCompleted: true,
       });
-      router.back();
+      router.replace('/(tabs)' as never);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save profile');
+      setError(err instanceof Error ? err.message : 'Failed to save details');
     } finally {
       setIsLoading(false);
     }
@@ -65,11 +75,8 @@ export default function EditProfileScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      <Pressable style={styles.back} onPress={() => router.back()} disabled={isLoading}>
-        <Ionicons name="chevron-back" size={22} color={travelColors.ink} />
-      </Pressable>
-      <Text style={styles.title}>Edit profile</Text>
-      <Text style={styles.subtitle}>Update your personal details and travel preferences.</Text>
+      <Text style={styles.title}>Complete Your Profile</Text>
+      <Text style={styles.subtitle}>Help us personalize your travel experience with your details.</Text>
 
       {error && (
         <View style={styles.errorContainer}>
@@ -78,31 +85,10 @@ export default function EditProfileScreen() {
         </View>
       )}
 
-      <Text style={styles.label}>Name</Text>
+      <Text style={styles.label}>Phone Number</Text>
       <TextInput
         style={styles.input}
-        placeholder="Full name"
-        placeholderTextColor="#98A2B3"
-        value={name}
-        onChangeText={setName}
-        editable={!isLoading}
-      />
-
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email address"
-        placeholderTextColor="#98A2B3"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        editable={!isLoading}
-      />
-
-      <Text style={styles.label}>Phone</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Phone number"
+        placeholder="Enter your phone number"
         placeholderTextColor="#98A2B3"
         value={phone}
         onChangeText={setPhone}
@@ -113,7 +99,7 @@ export default function EditProfileScreen() {
       <Text style={styles.label}>Age</Text>
       <TextInput
         style={styles.input}
-        placeholder="Your age"
+        placeholder="Enter your age"
         placeholderTextColor="#98A2B3"
         value={age}
         onChangeText={setAge}
@@ -124,7 +110,7 @@ export default function EditProfileScreen() {
       <Text style={styles.label}>Gender</Text>
       <Pressable style={styles.selectButton} onPress={() => setShowGenderModal(true)} disabled={isLoading}>
         <Text style={[styles.selectButtonText, !gender && { color: '#98A2B3' }]}>
-          {gender ? gender.charAt(0).toUpperCase() + gender.slice(1) : 'Select gender'}
+          {gender ? gender.charAt(0).toUpperCase() + gender.slice(1) : 'Select your gender'}
         </Text>
         <Ionicons name="chevron-down" size={20} color={travelColors.muted} />
       </Pressable>
@@ -153,17 +139,17 @@ export default function EditProfileScreen() {
       <Text style={styles.label}>Emergency Contact Name</Text>
       <TextInput
         style={styles.input}
-        placeholder="Emergency contact name"
+        placeholder="Full name of emergency contact"
         placeholderTextColor="#98A2B3"
         value={emergencyContact}
         onChangeText={setEmergencyContact}
         editable={!isLoading}
       />
 
-      <Text style={styles.label}>Emergency Phone</Text>
+      <Text style={styles.label}>Emergency Contact Phone</Text>
       <TextInput
         style={styles.input}
-        placeholder="Emergency contact phone"
+        placeholder="Emergency contact phone number"
         placeholderTextColor="#98A2B3"
         value={emergencyPhone}
         onChangeText={setEmergencyPhone}
@@ -200,28 +186,16 @@ export default function EditProfileScreen() {
         </Pressable>
       </Modal>
 
-      <Text style={styles.label}>Preferences (comma separated)</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="e.g., Beach, Mountains, Cultural"
-        placeholderTextColor="#98A2B3"
-        value={preferences}
-        onChangeText={setPreferences}
-        editable={!isLoading}
-      />
+      <Pressable style={[styles.primary, isLoading && styles.primaryDisabled]} onPress={handleSave} disabled={isLoading}>
+        {isLoading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.primaryText}>Complete Profile</Text>
+        )}
+      </Pressable>
 
-      <Text style={styles.label}>Favorite cities (comma separated)</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="e.g., Paris, Tokyo, Dubai"
-        placeholderTextColor="#98A2B3"
-        value={favorites}
-        onChangeText={setFavorites}
-        editable={!isLoading}
-      />
-
-      <Pressable style={[styles.primary, isLoading && styles.primaryDisabled]} onPress={handleSave} disabled={!name.trim() || !email.trim() || isLoading}>
-        {isLoading ? <ActivityIndicator color="#fff" /> : <Text style={styles.primaryText}>Save profile</Text>}
+      <Pressable style={styles.skip} onPress={() => router.replace('/(tabs)' as never)} disabled={isLoading}>
+        <Text style={styles.skipText}>Skip for now</Text>
       </Pressable>
     </ScrollView>
   );
@@ -230,9 +204,8 @@ export default function EditProfileScreen() {
 const styles = StyleSheet.create({
   screen: { backgroundColor: '#F3F8FB', flex: 1 },
   content: { padding: 18, paddingBottom: 110, paddingTop: 32 },
-  back: { alignItems: 'center', backgroundColor: '#fff', borderRadius: 999, height: 42, justifyContent: 'center', marginBottom: 24, width: 42 },
-  title: { color: travelColors.ink, fontSize: 30, fontWeight: '900' },
-  subtitle: { color: travelColors.muted, fontSize: 15, fontWeight: '700', lineHeight: 22, marginBottom: 24, marginTop: 4 },
+  title: { color: travelColors.ink, fontSize: 32, fontWeight: '900', marginBottom: 8 },
+  subtitle: { color: travelColors.muted, fontSize: 15, fontWeight: '700', lineHeight: 22, marginBottom: 24 },
   errorContainer: { alignItems: 'center', backgroundColor: '#FEE2E2', borderColor: '#FECACA', borderRadius: 12, borderWidth: 1, flexDirection: 'row', gap: 12, marginBottom: 18, padding: 12 },
   errorText: { color: travelColors.coral, flex: 1, fontSize: 14, fontWeight: '700' },
   label: { color: travelColors.ink, fontSize: 15, fontWeight: '800', marginBottom: 8, marginTop: 14 },
@@ -248,4 +221,6 @@ const styles = StyleSheet.create({
   primary: { alignItems: 'center', backgroundColor: travelColors.blue, borderRadius: 12, justifyContent: 'center', marginTop: 24, minHeight: 54 },
   primaryDisabled: { opacity: 0.6 },
   primaryText: { color: '#fff', fontSize: 16, fontWeight: '900' },
+  skip: { alignItems: 'center', marginTop: 12, paddingVertical: 14 },
+  skipText: { color: travelColors.muted, fontSize: 15, fontWeight: '700' },
 });

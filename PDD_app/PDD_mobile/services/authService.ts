@@ -8,7 +8,9 @@ const STORAGE_TOKEN = 'pdd_trip_planner_token';
 
 type AuthContextValue = {
   user: UserProfile | null;
+  token: string | null;
   isReady: boolean;
+  isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   signup: (name: string, email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -66,13 +68,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: data.user.id,
         name: data.user.name,
         email: data.user.email,
-        photoUrl: `https://api.dicebear.com/6.x/adventurer/svg?seed=${encodeURIComponent(data.user.email)}`,
-        favorites: [],
-        preferences: [],
-        savedTrips: 0,
+        photoUrl: data.user.profilePhoto || `https://api.dicebear.com/6.x/adventurer/svg?seed=${encodeURIComponent(data.user.email)}`,
+        phone: data.user.phone || undefined,
+        age: data.user.age || undefined,
+        gender: data.user.gender,
+        emergencyContact: data.user.emergencyContact || undefined,
+        emergencyPhone: data.user.emergencyPhone || undefined,
+        preferredTravelStyle: data.user.preferredTravelStyle || data.user.travelStyle,
+        favorites: data.user.favoriteLocations || [],
+        preferences: data.user.preferences || [],
+        savedTrips: data.user.savedTrips || 0,
         upcomingTrips: 0,
         completedTrips: 0,
         joinedAt: new Date().toISOString(),
+        personalDetailsCompleted: Boolean(data.user.phone && data.user.age && data.user.gender),
       };
       setUser(userProfile);
       setToken(data.token);
@@ -99,12 +108,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         name: data.user.name,
         email: data.user.email,
         photoUrl: `https://api.dicebear.com/6.x/adventurer/svg?seed=${encodeURIComponent(data.user.email)}`,
+        phone: undefined,
+        age: undefined,
+        gender: undefined,
+        emergencyContact: undefined,
+        emergencyPhone: undefined,
+        preferredTravelStyle: undefined,
         favorites: [],
         preferences: [],
         savedTrips: 0,
         upcomingTrips: 0,
         completedTrips: 0,
         joinedAt: new Date().toISOString(),
+        personalDetailsCompleted: false,
       };
       setUser(userProfile);
       setToken(data.token);
@@ -121,7 +137,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const updateProfile = async (updates: Partial<UserProfile>) => {
-    const next = { ...user, ...updates } as UserProfile;
+    if (!token) throw new Error('Not authenticated');
+    const res = await fetch(`${env.apiBaseUrl}/auth/profile`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        phone: updates.phone,
+        age: updates.age,
+        gender: updates.gender,
+        preferredTravelStyle: updates.preferredTravelStyle,
+        emergencyContact: updates.emergencyContact,
+        emergencyPhone: updates.emergencyPhone,
+      }),
+    });
+    if (!res.ok) {
+      const errorBody = await res.json().catch(() => ({}));
+      throw new Error(errorBody.message || 'Could not update profile');
+    }
+    const data = await res.json();
+    const next = {
+      ...user,
+      ...updates,
+      phone: data.user.phone || updates.phone || user?.phone,
+      age: data.user.age ?? updates.age ?? user?.age,
+      gender: data.user.gender || updates.gender || user?.gender,
+      emergencyContact: data.user.emergencyContact || updates.emergencyContact || user?.emergencyContact,
+      emergencyPhone: data.user.emergencyPhone || updates.emergencyPhone || user?.emergencyPhone,
+      preferredTravelStyle: data.user.preferredTravelStyle || updates.preferredTravelStyle || user?.preferredTravelStyle,
+    } as UserProfile;
     setUser(next);
     await saveUser(next);
   };

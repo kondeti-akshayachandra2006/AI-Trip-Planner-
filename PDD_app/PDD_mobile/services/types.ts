@@ -94,10 +94,17 @@ export type UserProfile = {
   name: string;
   email: string;
   photoUrl: string;
+  phone?: string;
+  age?: number;
+  gender?: 'male' | 'female' | 'other';
+  emergencyContact?: string;
+  emergencyPhone?: string;
+  preferredTravelStyle?: 'budget' | 'comfort' | 'luxury' | 'adventure';
   favorites: string[];
   preferences: string[];
   savedTrips: number;
   upcomingTrips: number;
   completedTrips: number;
   joinedAt: string;
+  personalDetailsCompleted?: boolean;
 };

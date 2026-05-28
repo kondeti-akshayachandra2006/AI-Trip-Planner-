@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { GlassCard } from '@/components/travel/GlassCard';
 import { MapPreview } from '@/components/travel/MapPreview';
 import { MetricCard } from '@/components/travel/MetricCard';
@@ -33,18 +33,19 @@ export default function HomeScreen() {
   }
 
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      <View style={styles.hero}>
-        <View>
-          <Text style={styles.eyebrow}>{greeting}</Text>
-          <Text style={styles.title}>AI Trip Planner</Text>
-          <Text style={styles.subtitle}>Routes, weather, hotels, food, transport, and safety in one assistant.</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.screen} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <View style={styles.hero}>
+          <View style={styles.heroContent}>
+            <Text style={styles.eyebrow}>{greeting}</Text>
+            <Text style={styles.title}>AI Trip Planner</Text>
+            <Text style={styles.subtitle}>Routes, weather, hotels, food, transport, and safety in one assistant.</Text>
+          </View>
+          <Pressable style={styles.sos} onPress={() => router.push('/auth/personal-details' as never)}>
+            <Ionicons name="warning" size={18} color="#fff" />
+            <Text style={styles.sosText}>SOS</Text>
+          </Pressable>
         </View>
-        <Pressable style={styles.sos}>
-          <Ionicons name="warning" size={18} color="#fff" />
-          <Text style={styles.sosText}>SOS</Text>
-        </Pressable>
-      </View>
 
       <GlassCard style={styles.searchCard}>
         <SearchBox placeholder="From where?" value={source} onChangeText={setSource} />
@@ -84,17 +85,20 @@ export default function HomeScreen() {
         ))}
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#F3F8FB' },
   screen: { backgroundColor: '#F3F8FB', flex: 1 },
-  content: { padding: 18, paddingBottom: 110 },
-  hero: { alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20 },
+  content: { padding: 18, paddingRight: 22, paddingBottom: 110 },
+  hero: { alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'space-between', paddingTop: 12, gap: 12, marginBottom: 12 },
+  heroContent: { flex: 1 },
   eyebrow: { color: travelColors.teal, fontSize: 13, fontWeight: '800', textTransform: 'uppercase' },
   title: { color: travelColors.ink, fontSize: 36, fontWeight: '900', letterSpacing: 0, marginTop: 4 },
   subtitle: { color: travelColors.muted, fontSize: 15, fontWeight: '600', lineHeight: 22, marginTop: 6, maxWidth: 290 },
-  sos: { alignItems: 'center', backgroundColor: travelColors.coral, borderRadius: 18, flexDirection: 'row', gap: 6, paddingHorizontal: 12, paddingVertical: 10 },
+  sos: { alignItems: 'center', backgroundColor: travelColors.coral, borderRadius: 18, flexDirection: 'row', gap: 6, paddingHorizontal: 14, paddingVertical: 11, minHeight: 44, minWidth: 60, justifyContent: 'center', flexShrink: 0 },
   sosText: { color: '#fff', fontSize: 12, fontWeight: '900' },
   searchCard: { gap: 12, marginBottom: 16, marginTop: 22 },
   planButton: { alignItems: 'center', backgroundColor: travelColors.blue, borderRadius: 17, flexDirection: 'row', gap: 9, justifyContent: 'center', minHeight: 54 },

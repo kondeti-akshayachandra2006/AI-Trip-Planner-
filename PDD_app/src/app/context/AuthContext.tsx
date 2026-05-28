@@ -5,8 +5,10 @@ type UserProfile = {
   id: string;
   name: string;
   email: string;
+  phone?: string;
   age?: number | null;
   gender?: string;
+  location?: string;
   country?: string;
   travelStyle?: string;
   budget?: string;

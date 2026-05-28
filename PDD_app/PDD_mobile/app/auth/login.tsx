@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { travelColors } from '@/components/travel/TravelTheme';
 import { useAuth } from '@/services/authService';
 
@@ -9,36 +9,108 @@ export default function LoginScreen() {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const validateForm = () => {
+    if (!email.trim()) {
+      setError('Email is required');
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email');
+      return false;
+    }
+    if (!password.trim()) {
+      setError('Password is required');
+      return false;
+    }
+    return true;
+  };
 
   async function handleLogin() {
-    await login(email.trim(), password);
-    router.replace('/(tabs)');
+    setError('');
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+    try {
+      await login(email.trim(), password);
+      // Navigation will be handled by root layout useEffect
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
+      setIsLoading(false);
+    }
   }
 
   return (
-    <View style={styles.screen}>
-      <Pressable style={styles.back} onPress={() => router.back()}><Ionicons name="chevron-back" size={22} color={travelColors.ink} /></Pressable>
+    <ScrollView style={styles.screen} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <Pressable style={styles.back} onPress={() => router.back()} disabled={isLoading}>
+        <Ionicons name="chevron-back" size={22} color={travelColors.ink} />
+      </Pressable>
       <Text style={styles.title}>Welcome back</Text>
       <Text style={styles.subtitle}>Secure login with saved profile and session persistence.</Text>
-      <TextInput autoCapitalize="none" keyboardType="email-address" style={styles.input} placeholder="Email address" placeholderTextColor="#98A2B3" value={email} onChangeText={setEmail} />
-      <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#98A2B3" secureTextEntry value={password} onChangeText={setPassword} />
-      <Pressable style={styles.primary} onPress={handleLogin} disabled={!email.trim() || !password.trim()}><Text style={styles.primaryText}>Login</Text></Pressable>
-      <Pressable style={styles.google}><Ionicons name="logo-google" size={18} color={travelColors.ink} /><Text style={styles.googleText}>Continue with Google</Text></Pressable>
+
+      {error && (
+        <View style={styles.errorContainer}>
+          <Ionicons name="alert-circle" size={16} color={travelColors.coral} />
+          <Text style={styles.errorText}>{error}</Text>
+        </View>
+      )}
+
+      <TextInput
+        autoCapitalize="none"
+        keyboardType="email-address"
+        style={styles.input}
+        placeholder="Email address"
+        placeholderTextColor="#98A2B3"
+        value={email}
+        onChangeText={setEmail}
+        editable={!isLoading}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        placeholderTextColor="#98A2B3"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+        editable={!isLoading}
+      />
+      <Pressable
+        style={[styles.primary, isLoading && styles.primaryDisabled]}
+        onPress={handleLogin}
+        disabled={!email.trim() || !password.trim() || isLoading}
+      >
+        {isLoading ? <ActivityIndicator color="#fff" /> : <Text style={styles.primaryText}>Login</Text>}
+      </Pressable>
+      <Pressable style={styles.google} disabled={isLoading}>
+        <Ionicons name="logo-google" size={18} color={travelColors.ink} />
+        <Text style={styles.googleText}>Continue with Google</Text>
+      </Pressable>
       <View style={styles.links}>
-        <Text style={styles.link} onPress={() => router.push('/auth/signup' as never)}>Create account</Text>
-        <Text style={styles.link} onPress={() => router.push('/auth/forgot-password' as never)}>Forgot password</Text>
+        <Text style={styles.link} onPress={() => router.push('/auth/signup' as never)} disabled={isLoading}>
+          Create account
+        </Text>
+        <Text style={styles.link} onPress={() => router.push('/auth/forgot-password' as never)} disabled={isLoading}>
+          Forgot password
+        </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { backgroundColor: '#F3F8FB', flex: 1, padding: 22, paddingTop: 38 },
+  screen: { backgroundColor: '#F3F8FB', flex: 1 },
+  content: { padding: 22, paddingTop: 38 },
   back: { alignItems: 'center', backgroundColor: '#fff', borderRadius: 999, height: 42, justifyContent: 'center', marginBottom: 28, width: 42 },
   title: { color: travelColors.ink, fontSize: 34, fontWeight: '900' },
   subtitle: { color: travelColors.muted, fontSize: 15, fontWeight: '700', lineHeight: 22, marginBottom: 24, marginTop: 7 },
+  errorContainer: { alignItems: 'center', backgroundColor: '#FEE2E2', borderColor: '#FECACA', borderRadius: 12, borderWidth: 1, flexDirection: 'row', gap: 12, marginBottom: 18, padding: 12 },
+  errorText: { color: travelColors.coral, flex: 1, fontSize: 14, fontWeight: '700' },
   input: { backgroundColor: '#fff', borderColor: travelColors.line, borderRadius: 17, borderWidth: 1, color: travelColors.ink, fontSize: 15, fontWeight: '700', marginBottom: 12, minHeight: 54, paddingHorizontal: 15 },
   primary: { alignItems: 'center', backgroundColor: travelColors.blue, borderRadius: 17, justifyContent: 'center', marginTop: 6, minHeight: 54 },
+  primaryDisabled: { opacity: 0.6 },
   primaryText: { color: '#fff', fontSize: 16, fontWeight: '900' },
   google: { alignItems: 'center', backgroundColor: '#fff', borderColor: travelColors.line, borderRadius: 17, borderWidth: 1, flexDirection: 'row', gap: 10, justifyContent: 'center', marginTop: 12, minHeight: 54 },
   googleText: { color: travelColors.ink, fontSize: 15, fontWeight: '900' },

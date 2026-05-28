@@ -10,9 +10,11 @@ export default function CreateProfile() {
   const { user, updateProfile } = useAuth();
   const [profile, setProfile] = useState({
     name: user?.name || '',
+    phone: user?.phone || '',
     age: user?.age?.toString() || '',
     gender: user?.gender || '',
-    country: user?.country || '',
+    location: user?.location || user?.country || '',
+    profilePhoto: user?.profilePhoto || '',
     travelStyle: user?.travelStyle || '',
     budget: user?.budget || '',
     bio: user?.bio || '',
@@ -22,13 +24,20 @@ export default function CreateProfile() {
 
   const handleContinue = async () => {
     setError('');
+    if (!profile.name.trim() || !profile.phone.trim() || !profile.age.trim() || !profile.gender.trim() || !profile.location.trim()) {
+      setError('Please complete your name, phone, age, gender, and location.');
+      return;
+    }
+
     setIsSaving(true);
     try {
       await updateProfile({
         name: profile.name,
+        phone: profile.phone,
         age: Number(profile.age) || null,
         gender: profile.gender,
-        country: profile.country,
+        location: profile.location,
+        profilePhoto: profile.profilePhoto,
         travelStyle: profile.travelStyle,
         budget: profile.budget,
         bio: profile.bio,
@@ -69,6 +78,13 @@ export default function CreateProfile() {
           />
 
           <Input
+            placeholder="Phone Number"
+            value={profile.phone}
+            onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+            icon={<Phone className="w-5 h-5" />}
+          />
+
+          <Input
             type="number"
             placeholder="Age"
             value={profile.age}
@@ -82,10 +98,16 @@ export default function CreateProfile() {
           />
 
           <Input
-            placeholder="Country"
-            value={profile.country}
-            onChange={(e) => setProfile({ ...profile, country: e.target.value })}
+            placeholder="Location"
+            value={profile.location}
+            onChange={(e) => setProfile({ ...profile, location: e.target.value })}
             icon={<MapPin className="w-5 h-5" />}
+          />
+
+          <Input
+            placeholder="Profile Photo URL (optional)"
+            value={profile.profilePhoto}
+            onChange={(e) => setProfile({ ...profile, profilePhoto: e.target.value })}
           />
 
           <Input
