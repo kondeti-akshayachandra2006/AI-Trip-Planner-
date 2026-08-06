@@ -1,16 +1,50 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, MapPin, Plus } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import Button from '../components/Button';
+import { useAuth } from '../context/AuthContext';
+import { fetchJson } from '../lib/api';
 
-const trips = [
-  { id: 1, destination: 'Paris, France', dates: 'Jun 15-22, 2026', status: 'Upcoming', image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400' },
-  { id: 2, destination: 'Tokyo, Japan', dates: 'Aug 5-15, 2026', status: 'Planning', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400' },
-  { id: 3, destination: 'New York, USA', dates: 'Mar 10-17, 2026', status: 'Completed', image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400' },
+const fallbackTrips = [
+  { id: 'demo-1', destination: 'Paris, France', dates: 'Jun 15-22, 2026', status: 'Upcoming', image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400' },
+  { id: 'demo-2', destination: 'Tokyo, Japan', dates: 'Aug 5-15, 2026', status: 'Planning', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400' },
 ];
 
 export default function SavedTrips() {
   const navigate = useNavigate();
+  const { token } = useAuth();
+  const [trips, setTrips] = useState<any[]>(fallbackTrips);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTrips = async () => {
+      try {
+        const data = await fetchJson('/trips', { method: 'GET', authToken: token ?? undefined });
+        setTrips(
+          Array.isArray(data.trips)
+            ? data.trips.map((trip: any) => ({
+                id: trip._id,
+                destination: trip.destination,
+                dates: trip.startDate && trip.endDate ? `${new Date(trip.startDate).toLocaleDateString()} - ${new Date(trip.endDate).toLocaleDateString()}` : 'Custom trip',
+                status: trip.status || 'Upcoming',
+                image: trip.itinerary?.[0]?.image || 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400',
+              }))
+            : fallbackTrips,
+        );
+      } catch {
+        setTrips(fallbackTrips);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (token) {
+      loadTrips();
+    } else {
+      setLoading(false);
+    }
+  }, [token]);
 
   return (
     <div className="min-h-screen w-full bg-background pb-24">

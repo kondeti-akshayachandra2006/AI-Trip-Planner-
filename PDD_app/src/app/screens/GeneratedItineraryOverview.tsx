@@ -32,9 +32,13 @@ export default function GeneratedItineraryOverview() {
   }, [id, trip, token]);
 
   if (loading) return <div className="p-10 text-center">Loading Itinerary...</div>;
-  if (!trip) return <div className="p-10 text-center text-red-500">Trip not found</div>;
+  if (!trip) return <div className="p-10 text-center text-red-500">Trip not found or unavailable</div>;
 
   const itinerary = trip.itinerary || [];
+  const attractions = trip.attractions || [];
+  const hotels = trip.hotels || [];
+  const food = trip.food || [];
+  const recommendations = trip.recommendations || [];
 
   return (
     <div className="min-h-screen w-full bg-background pb-24">
@@ -76,6 +80,69 @@ export default function GeneratedItineraryOverview() {
       </div>
 
       <div className="p-6 space-y-4">
+        {trip.summary ? (
+          <GlassCard className="p-4">
+            <h2 className="font-bold mb-2">Trip Overview</h2>
+            <p className="text-sm text-muted-foreground">{trip.summary}</p>
+          </GlassCard>
+        ) : null}
+
+        {recommendations.length > 0 ? (
+          <GlassCard className="p-4">
+            <h2 className="font-bold mb-2">Recommendations</h2>
+            <div className="space-y-2">
+              {recommendations.map((item: any, index: number) => (
+                <div key={index} className="rounded-2xl bg-muted p-3">
+                  <p className="text-sm font-medium">{item.type}</p>
+                  <p className="text-sm text-muted-foreground">{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        ) : null}
+
+        {attractions.length > 0 ? (
+          <GlassCard className="p-4">
+            <h2 className="font-bold mb-2">Top Attractions</h2>
+            <div className="grid grid-cols-2 gap-3">
+              {attractions.map((attraction: any, index: number) => (
+                <div key={index} className="rounded-2xl bg-muted p-3">
+                  <p className="text-sm font-medium">{attraction.name}</p>
+                  <p className="text-sm text-muted-foreground">{attraction.description}</p>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        ) : null}
+
+        {hotels.length > 0 ? (
+          <GlassCard className="p-4">
+            <h2 className="font-bold mb-2">Hotel Options</h2>
+            <div className="space-y-2">
+              {hotels.map((hotel: any, index: number) => (
+                <div key={index} className="rounded-2xl bg-muted p-3">
+                  <p className="text-sm font-medium">{hotel.name}</p>
+                  <p className="text-sm text-muted-foreground">{hotel.rating} ★ • {hotel.price}</p>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        ) : null}
+
+        {food.length > 0 ? (
+          <GlassCard className="p-4">
+            <h2 className="font-bold mb-2">Food & Dining</h2>
+            <div className="space-y-2">
+              {food.map((dish: any, index: number) => (
+                <div key={index} className="rounded-2xl bg-muted p-3">
+                  <p className="text-sm font-medium">{dish.name}</p>
+                  <p className="text-sm text-muted-foreground">{dish.cuisine} • {dish.price}</p>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        ) : null}
+
         <div className="flex items-center justify-between">
           <h2 className="font-bold">Day-by-Day Plan</h2>
           <button className="text-primary text-sm flex items-center gap-1">
@@ -109,14 +176,35 @@ export default function GeneratedItineraryOverview() {
           </GlassCard>
         ))}
 
-        <div className="grid grid-cols-2 gap-3 pt-4">
-          <Button variant="outline" size="lg" onClick={() => navigate('/map')}>
-            View Map
-          </Button>
-          <Button variant="gradient" size="lg" onClick={() => navigate('/hotels')}>
-            Book Hotels
-          </Button>
-        </div>
+        {trip.route ? (
+          <GlassCard className="p-4">
+            <h2 className="font-bold mb-2">Route & Transport</h2>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm">Distance: <strong>{trip.route.distanceKm ?? '—'} km</strong></p>
+                <p className="text-sm">Estimated time: <strong>{trip.route.durationMinutes ?? '—'} min</strong></p>
+                <p className="text-sm">Transport suggestions: <strong>{Array.isArray(trip.transport) && trip.transport.length ? trip.transport.map((t:any)=>t.type).join(', ') : 'Public transport, taxi, rideshare'}</strong></p>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="outline" size="md" onClick={() => navigate('/map', { state: { trip } })}>
+                  View Map
+                </Button>
+                <Button variant="gradient" size="md" onClick={() => navigate('/hotels')}>
+                  Book Hotels
+                </Button>
+              </div>
+            </div>
+          </GlassCard>
+        ) : (
+          <div className="grid grid-cols-2 gap-3 pt-4">
+            <Button variant="outline" size="lg" onClick={() => navigate('/map')}>
+              View Map
+            </Button>
+            <Button variant="gradient" size="lg" onClick={() => navigate('/hotels')}>
+              Book Hotels
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

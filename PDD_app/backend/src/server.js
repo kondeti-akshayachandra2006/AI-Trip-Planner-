@@ -2,7 +2,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
-import net from 'net';
 import readline from 'readline';
 import mongoose from 'mongoose';
 import { Server } from 'socket.io';
@@ -131,25 +130,21 @@ function askYesNo(question) {
   });
 }
 
-function isPortAvailable(port) {
-  return new Promise((resolve) => {
-    const serverCheck = net.createServer();
+async function tryListen(port) {
+  return new Promise((resolve, reject) => {
+    const onError = (error) => {
+      server.off('listening', onListening);
+      reject(error);
+    };
 
-    serverCheck.once('error', (error) => {
-      serverCheck.close();
-      if (error.code === 'EADDRINUSE' || error.code === 'EACCES') {
-        resolve(false);
-        return;
-      }
-      logger.error(`Unexpected port check failure for ${port}: ${error.message}`);
-      resolve(false);
-    });
+    const onListening = () => {
+      server.off('error', onError);
+      resolve(port);
+    };
 
-    serverCheck.once('listening', () => {
-      serverCheck.close(() => resolve(true));
-    });
-
-    serverCheck.listen(port, '127.0.0.1');
+    server.once('error', onError);
+    server.once('listening', onListening);
+    server.listen(port, '0.0.0.0');
   });
 }
 
@@ -158,36 +153,16 @@ async function resolvePort() {
   const preferredPort = Number.isInteger(envPort) && envPort > 0 ? envPort : FALLBACK_PORTS[0];
   const candidatePorts = [preferredPort, ...FALLBACK_PORTS.filter((port) => port !== preferredPort)];
 
-  let currentPort = candidatePorts[0];
-
-  if (await isPortAvailable(currentPort)) {
-    return currentPort;
-  }
-
-  const promptPorts = candidatePorts.slice(1);
-  if (promptPorts.length === 0) {
-    throw new Error(`Port ${currentPort} is already in use and no fallback ports are configured.`);
-  }
-
-  if (!process.stdin.isTTY) {
-    throw new Error(`Port ${currentPort} is already in use. Run in an interactive terminal or set PORT in .env to an available value.`);
-  }
-
-  for (const nextPort of promptPorts) {
-    const answer = await askYesNo(
-      `Port ${currentPort} is already in use.${colors.bold}\nDo you want to run on port ${nextPort} instead? (Y/N)${colors.reset}`
-    );
-
-    if (!/^y(es)?$/i.test(answer)) {
-      throw new Error('Server startup cancelled by user.');
+  for (const port of candidatePorts) {
+    try {
+      return await tryListen(port);
+    } catch (error) {
+      if (error && error.code === 'EADDRINUSE') {
+        logger.warn(`Port ${port} is busy; trying the next fallback port.`);
+        continue;
+      }
+      throw error;
     }
-
-    if (await isPortAvailable(nextPort)) {
-      return nextPort;
-    }
-
-    logger.warn(`Port ${nextPort} is also in use. Trying next fallback port if available.`);
-    currentPort = nextPort;
   }
 
   throw new Error(`No available ports found. Tried: ${candidatePorts.join(', ')}.`);
@@ -223,16 +198,14 @@ function setupErrorHandlers() {
 
 async function startServer() {
   try {
-    const selectedPort = await resolvePort();
     setupErrorHandlers();
+    const selectedPort = await resolvePort();
 
-    server.listen(selectedPort, () => {
-      logger.success('Server running successfully at:');
-      logger.success(`  ${formatUrl(selectedPort)}`);
-      if (process.env.PORT) {
-        logger.info(`Configured PORT=${process.env.PORT} from environment.`);
-      }
-    });
+    logger.success('Server running successfully at:');
+    logger.success(`  ${formatUrl(selectedPort)}`);
+    if (process.env.PORT) {
+      logger.info(`Configured PORT=${process.env.PORT} from environment.`);
+    }
   } catch (error) {
     logger.error(error instanceof Error ? error.message : String(error));
     process.exit(1);

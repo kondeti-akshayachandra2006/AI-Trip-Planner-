@@ -52,6 +52,8 @@ export default function AIItineraryGenerator() {
             preferences: ['Sightseeing', 'Culture'],
             travelStyle: 'Balanced',
             travelers: tripData.travelers,
+            startDate: tripData.startDate,
+            endDate: tripData.endDate,
           },
         });
 
@@ -64,7 +66,33 @@ export default function AIItineraryGenerator() {
         setError('Connection failed. Using demo data...');
         setTimeout(() => {
           setProgress(100);
-          setTimeout(() => navigate('/itinerary/1'), 1000);
+          const fallbackTrip = {
+            title: `Sample trip to ${tripData.destination}`,
+            destination: tripData.destination,
+            days: diffDays,
+            budget: tripData.budget,
+            itinerary: Array.from({ length: diffDays }, (_, index) => ({
+              dayNumber: index + 1,
+              title: `Day ${index + 1} in ${tripData.destination}`,
+              summary: `Explore the highlights of ${tripData.destination} with local food, attractions, and travel tips.`,
+              activities: [`Morning exploration`, `Afternoon local dining`, `Evening sightseeing`],
+              image: `https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=80&day=${index + 1}`,
+            })),
+            summary: `A ${diffDays}-day trip to ${tripData.destination}.`,
+            recommendations: [
+              { type: 'Attractions', detail: 'Visit the top local landmarks and hidden gems.' },
+              { type: 'Food', detail: 'Try the best local restaurants and street food.' },
+            ],
+            hotels: [
+              { name: 'Central stay', rating: 4.6, price: '$140/night' },
+              { name: 'Comfort suites', rating: 4.4, price: '$95/night' },
+            ],
+            food: [
+              { name: 'Local café', cuisine: 'Contemporary', price: '$15' },
+              { name: 'Street food market', cuisine: 'Local specialties', price: '$8' },
+            ],
+          };
+          setTimeout(() => navigate('/itinerary/demo', { state: { trip: fallbackTrip } }), 1000);
         }, 2000);
       }
     };

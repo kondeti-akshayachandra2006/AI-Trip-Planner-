@@ -4,9 +4,13 @@ const tripSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     source: { type: String, default: '' },
+    sourceCoords: { type: Object, default: {} },
     destination: { type: String, required: true },
+    destinationCoords: { type: Object, default: {} },
     title: { type: String, default: '' },
     summary: { type: String, default: '' },
+    startDate: { type: Date },
+    endDate: { type: Date },
     days: { type: Number, default: 1 },
     travelStyle: { type: String, default: '' },
     budget: { type: String, default: '' },

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Navigation, Search, Loader2 } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import Input from '../components/Input';
@@ -33,6 +33,8 @@ function buildMapUrl(place: Place) {
 
 export default function InteractiveMapView() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const incomingTrip = location.state?.trip ?? null;
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState<Place[]>(DEFAULT_PLACES);
   const [selectedPlace, setSelectedPlace] = useState<Place>(DEFAULT_PLACES[0]);
@@ -40,6 +42,23 @@ export default function InteractiveMapView() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // If a trip was provided, pre-select its destination and show nearby items
+    if (incomingTrip && incomingTrip.destinationCoords) {
+      try {
+        const dc = incomingTrip.destinationCoords;
+        const place: Place = {
+          id: incomingTrip._id || 'trip-dest',
+          name: incomingTrip.destination || (dc.label || 'Destination'),
+          address: dc.label || '',
+          lat: Number(dc.lat || dc.latitude || 0),
+          lon: Number(dc.lon || dc.longitude || 0),
+        };
+        setSelectedPlace(place);
+        setSuggestions((prev) => [place, ...prev.filter((p) => p.id !== place.id)]);
+      } catch (e) {
+        // ignore
+      }
+    }
     const controller = new AbortController();
     const trimmed = query.trim();
 
@@ -153,7 +172,7 @@ export default function InteractiveMapView() {
       </div>
 
       <div className="absolute bottom-6 left-6 right-6 z-20">
-        <GlassCard>
+          <GlassCard>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <MapPin className="w-5 h-5 text-white" />
@@ -163,6 +182,22 @@ export default function InteractiveMapView() {
               <p className="text-sm text-muted-foreground">{selectedPlace.address}</p>
             </div>
           </div>
+          {incomingTrip ? (
+            <div className="mb-3">
+              <h4 className="font-bold mb-1">Trip summary</h4>
+              <p className="text-sm text-muted-foreground">{incomingTrip.summary}</p>
+              <div className="grid grid-cols-2 gap-2 mt-3">
+                <div className="rounded-2xl bg-muted p-3">
+                  <p className="text-xs">Attractions</p>
+                  <p className="text-sm font-medium">{Array.isArray(incomingTrip.attractions) ? incomingTrip.attractions.slice(0,3).map((a:any)=>a.name).join(', ') : '—'}</p>
+                </div>
+                <div className="rounded-2xl bg-muted p-3">
+                  <p className="text-xs">Restaurants</p>
+                  <p className="text-sm font-medium">{Array.isArray(incomingTrip.food) ? incomingTrip.food.slice(0,3).map((f:any)=>f.name).join(', ') : '—'}</p>
+                </div>
+              </div>
+            </div>
+          ) : null}
           <div className="grid grid-cols-3 gap-3 text-sm text-muted-foreground mb-4">
             <div className="rounded-2xl bg-slate-900/60 p-3 text-white">
               Lat {selectedPlace.lat.toFixed(4)}

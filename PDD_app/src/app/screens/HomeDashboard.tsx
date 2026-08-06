@@ -1,133 +1,183 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Sparkles, MapPin, Calendar, TrendingUp, Bell, User, Search } from 'lucide-react';
+import { Plus, Sparkles, MapPin, Calendar, TrendingUp, Bell, User, Search, Compass, Plane, Hotel, UtensilsCrossed, ShieldCheck, MessageCircleMore } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import Button from '../components/Button';
+import { useAuth } from '../context/AuthContext';
+import { fetchJson } from '../lib/api';
 
-const upcomingTrips = [
-  { id: 1, destination: 'Paris', dates: 'Jun 15-22, 2026', image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400' },
-  { id: 2, destination: 'Tokyo', dates: 'Aug 5-15, 2026', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400' },
+const fallbackTrips = [
+  { id: 'demo-1', destination: 'Paris', dates: 'Jun 15-22, 2026', image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400' },
+  { id: 'demo-2', destination: 'Tokyo', dates: 'Aug 5-15, 2026', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400' },
 ];
 
 const quickActions = [
-  { icon: Search, label: 'Search', route: '/search', gradient: 'from-blue-500 to-cyan-500' },
-  { icon: Sparkles, label: 'AI Chat', route: '/ai-chat', gradient: 'from-purple-500 to-pink-500' },
-  { icon: Calendar, label: 'My Trips', route: '/saved-trips', gradient: 'from-green-500 to-emerald-500' },
-  { icon: TrendingUp, label: 'Insights', route: '/insights', gradient: 'from-orange-500 to-red-500' },
+  { icon: Search, label: 'Explore', route: '/search', gradient: 'from-sky-600 to-cyan-500' },
+  { icon: Sparkles, label: 'AI Assistant', route: '/ai-chat', gradient: 'from-violet-600 to-fuchsia-500' },
+  { icon: Calendar, label: 'Trips', route: '/saved-trips', gradient: 'from-emerald-600 to-green-500' },
+  { icon: TrendingUp, label: 'Insights', route: '/insights', gradient: 'from-amber-600 to-orange-500' },
+  { icon: Plane, label: 'Flights', route: '/flights', gradient: 'from-blue-600 to-indigo-500' },
+  { icon: Hotel, label: 'Hotels', route: '/hotels', gradient: 'from-rose-600 to-pink-500' },
+  { icon: UtensilsCrossed, label: 'Dining', route: '/restaurants', gradient: 'from-lime-600 to-emerald-500' },
+  { icon: ShieldCheck, label: 'Safety', route: '/emergency', gradient: 'from-slate-700 to-slate-500' },
 ];
 
 export default function HomeDashboard() {
   const navigate = useNavigate();
+  const { token } = useAuth();
+  const [upcomingTrips, setUpcomingTrips] = useState<any[]>(fallbackTrips);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTrips = async () => {
+      try {
+        const data = await fetchJson('/trips', { method: 'GET', authToken: token ?? undefined });
+        setUpcomingTrips(
+          Array.isArray(data.trips)
+            ? data.trips.slice(0, 2).map((trip: any) => ({
+                id: trip._id,
+                destination: trip.destination,
+                dates: trip.startDate && trip.endDate ? `${new Date(trip.startDate).toLocaleDateString()} - ${new Date(trip.endDate).toLocaleDateString()}` : 'Custom trip',
+                image: trip.itinerary?.[0]?.image || 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400',
+              }))
+            : fallbackTrips,
+        );
+      } catch {
+        setUpcomingTrips(fallbackTrips);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (token) {
+      loadTrips();
+    } else {
+      setLoading(false);
+    }
+  }, [token]);
 
   return (
-    <div className="min-h-screen w-full bg-background pb-24">
-      <div className="bg-gradient-to-br from-primary via-secondary to-accent p-6 pb-24 rounded-b-[3rem] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTEwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
-
-        <div className="relative flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-white/80 text-sm">Welcome back,</h2>
-            <h1 className="text-white text-2xl font-bold">Traveler</h1>
-          </div>
-          <div className="flex gap-3">
-            <button onClick={() => navigate('/notifications')} className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-              <Bell className="w-5 h-5 text-white" />
-            </button>
-            <button onClick={() => navigate('/profile')} className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-              <User className="w-5 h-5 text-white" />
-            </button>
-          </div>
-        </div>
-
-        <div className="relative">
-          <GlassCard className="bg-white/20 border-white/30">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-white/80 text-sm mb-1">Your next adventure</p>
-                <h3 className="text-white text-xl font-bold">Paris, France</h3>
-                <p className="text-white/80 text-sm">15 days to go</p>
+    <div className="min-h-screen w-full bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.15),_transparent_32%),linear-gradient(135deg,_#f8fbff_0%,_#eef5ff_100%)] pb-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 p-6 lg:flex-row lg:p-8">
+        <aside className="lg:w-72 lg:shrink-0">
+          <div className="sticky top-6 rounded-[28px] border border-slate-200 bg-white/80 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-white">
+                <Compass className="h-6 w-6" />
               </div>
-              <Calendar className="w-12 h-12 text-white/80" />
+              <div>
+                <p className="text-sm font-medium text-slate-500">Travel OS</p>
+                <h2 className="text-lg font-semibold text-slate-900">Trip Planner</h2>
+              </div>
             </div>
-          </GlassCard>
-        </div>
-      </div>
 
-      <div className="px-6 -mt-16 relative z-10">
-        <div className="grid grid-cols-4 gap-3 mb-8">
-          {quickActions.map((action) => {
-            const Icon = action.icon;
-            return (
-              <button
-                key={action.label}
-                onClick={() => navigate(action.route)}
-                className="flex flex-col items-center gap-2"
-              >
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${action.gradient} flex items-center justify-center shadow-lg`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-xs text-foreground">{action.label}</span>
-              </button>
-            );
-          })}
-        </div>
+            <div className="mt-6 space-y-2">
+              {[
+                { label: 'Home', route: '/home', icon: MapPin },
+                { label: 'Explore', route: '/search', icon: Search },
+                { label: 'AI Assistant', route: '/ai-chat', icon: Sparkles },
+                { label: 'Trips', route: '/saved-trips', icon: Calendar },
+                { label: 'Insights', route: '/insights', icon: TrendingUp },
+                { label: 'Profile', route: '/profile', icon: User },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <button key={item.label} onClick={() => navigate(item.route)} className="flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100">
+                    <Icon className="h-5 w-5 text-primary" />
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
 
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold">Upcoming Trips</h3>
-            <button onClick={() => navigate('/saved-trips')} className="text-primary text-sm">View All</button>
+            <div className="mt-6 rounded-3xl bg-slate-900 p-4 text-white">
+              <p className="text-sm text-slate-300">Next trip</p>
+              <p className="mt-1 text-xl font-semibold">Paris · 15 days</p>
+              <p className="mt-2 text-sm text-slate-400">Plan flights, hotels, dining and real-time updates from one workspace.</p>
+            </div>
           </div>
+        </aside>
 
-          <div className="space-y-3">
-            {upcomingTrips.map((trip) => (
-              <GlassCard key={trip.id} onClick={() => navigate(`/itinerary/${trip.id}`)} className="flex items-center gap-4 cursor-pointer">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-accent overflow-hidden">
-                  <img src={trip.image} alt={trip.destination} className="w-full h-full object-cover" />
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-bold mb-1">{trip.destination}</h4>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4" />
-                    {trip.dates}
+        <main className="flex-1 space-y-6">
+          <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Welcome back</p>
+                <h1 className="mt-2 text-3xl font-semibold text-slate-900">Plan your next destination with a full travel command center.</h1>
+                <p className="mt-3 max-w-2xl text-sm text-slate-600">The web experience mirrors the app with real-time itinerary generation, trip management, AI assistance, transport and stay recommendations.</p>
+              </div>
+              <div className="flex gap-3">
+                <button onClick={() => navigate('/notifications')} className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700">
+                  <Bell className="h-5 w-5" />
+                </button>
+                <button onClick={() => navigate('/profile')} className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700">
+                  <User className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {quickActions.map((action) => {
+              const Icon = action.icon;
+              return (
+                <button key={action.label} onClick={() => navigate(action.route)} className="rounded-[24px] border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${action.gradient}`}>
+                    <Icon className="h-6 w-6 text-white" />
                   </div>
+                  <p className="mt-4 text-sm font-semibold text-slate-900">{action.label}</p>
+                  <p className="mt-1 text-sm text-slate-500">Open the matching experience</p>
+                </button>
+              );
+            })}
+          </section>
+
+          <section className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+            <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold text-slate-900">Upcoming trips</h3>
+                  <p className="text-sm text-slate-500">Recent plans and live itinerary updates</p>
                 </div>
-                <MapPin className="w-5 h-5 text-primary" />
-              </GlassCard>
-            ))}
-          </div>
-        </div>
+                <button onClick={() => navigate('/saved-trips')} className="text-sm font-semibold text-primary">View all</button>
+              </div>
 
-        <Button
-          variant="gradient"
-          size="lg"
-          className="w-full"
-          onClick={() => navigate('/create-trip')}
-        >
-          <Plus className="w-5 h-5" />
-          Create New Trip
-        </Button>
-      </div>
-
-      <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4">
-        <div className="flex items-center justify-around max-w-md mx-auto">
-          <button onClick={() => navigate('/home')} className="flex flex-col items-center gap-1">
-            <div className="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-white" />
+              <div className="mt-5 space-y-3">
+                {upcomingTrips.map((trip) => (
+                  <GlassCard key={trip.id} onClick={() => navigate(`/itinerary/${trip.id}`)} className="flex items-center gap-4 cursor-pointer border border-slate-100">
+                    <div className="h-20 w-20 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-accent">
+                      <img src={trip.image} alt={trip.destination} className="h-full w-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-slate-900">{trip.destination}</h4>
+                      <div className="mt-1 flex items-center gap-2 text-sm text-slate-500">
+                        <Calendar className="h-4 w-4" />
+                        {trip.dates}
+                      </div>
+                    </div>
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </GlassCard>
+                ))}
+              </div>
             </div>
-            <span className="text-xs text-primary">Home</span>
-          </button>
-          <button onClick={() => navigate('/search')} className="flex flex-col items-center gap-1">
-            <Search className="w-5 h-5 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">Explore</span>
-          </button>
-          <button onClick={() => navigate('/ai-chat')} className="flex flex-col items-center gap-1">
-            <Sparkles className="w-5 h-5 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">AI</span>
-          </button>
-          <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1">
-            <User className="w-5 h-5 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">Profile</span>
-          </button>
-        </div>
+
+            <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+              <h3 className="text-lg font-semibold text-slate-900">Launch a new plan</h3>
+              <p className="mt-2 text-sm text-slate-500">Create a trip, generate an itinerary and bring every travel detail into the same view.</p>
+              <Button variant="gradient" size="lg" className="mt-5 w-full" onClick={() => navigate('/create-trip')}>
+                <Plus className="h-5 w-5" />
+                Create New Trip
+              </Button>
+              <div className="mt-4 rounded-3xl bg-slate-50 p-4 text-sm text-slate-600">
+                <div className="flex items-center gap-2 font-semibold text-slate-900">
+                  <MessageCircleMore className="h-4 w-4 text-primary" />
+                  Real-time assistant ready
+                </div>
+                <p className="mt-2">Ask for hotels, restaurants, weather, transport and safety guidance instantly.</p>
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
     </div>
   );
