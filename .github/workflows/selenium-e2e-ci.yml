@@ -1,0 +1,41 @@
+name: Selenium E2E CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  selenium-e2e:
+    name: ci: trigger selenium-ci workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Install Selenium dependencies
+        working-directory: frontend/selenium-tests
+        run: npm install
+
+      - name: Run Selenium login tests
+        working-directory: frontend/selenium-tests
+        run: npm run test:login
+
+      - name: Generate Selenium report
+        working-directory: frontend/selenium-tests
+        run: npm run generate:report
+
+      - name: Upload Selenium report artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-e2e-ci-artifacts
+          path: |
+            frontend/selenium-tests/tests/selenium-test-summary.json
+            frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx

@@ -1,0 +1,149 @@
+name: CI Test & Artifact Report
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup:
+    name: Setup repository
+    runs-on: ubuntu-latest
+    outputs:
+      node-modules-path: ${{ steps.install.outputs.cache-hit }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Install Selenium tests dependencies
+        run: |
+          cd frontend/selenium-tests
+          npm install
+
+      - name: Install Appium/load test dependencies
+        run: |
+          cd appium-test
+          npm install
+
+      - name: Create results directories
+        run: |
+          mkdir -p frontend/selenium-tests/artifacts
+          mkdir -p appium-test/results
+          mkdir -p appium-test/reports
+
+  selenium-tests:
+    name: Selenium Tests and Report
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Install Selenium test dependencies
+        working-directory: frontend/selenium-tests
+        run: npm install
+
+      - name: Run Selenium login tests
+        working-directory: frontend/selenium-tests
+        run: npm run test:login
+
+      - name: Generate Selenium Excel report
+        working-directory: frontend/selenium-tests
+        run: npm run generate:report
+
+      - name: Upload Selenium artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-test-artifacts
+          path: |
+            frontend/selenium-tests/tests/selenium-test-summary.json
+            frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
+            frontend/selenium-tests/artifacts
+
+  appium-load-tests:
+    name: Appium + Load Tests and Report
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Install Appium/load test dependencies
+        working-directory: appium-test
+        run: npm install
+
+      - name: Run Appium dry-run test suite
+        working-directory: appium-test
+        run: npm run appium:dry-run
+
+      - name: Run load test suite
+        working-directory: appium-test
+        run: npm run load:test
+
+      - name: Generate Appium and load test Excel report
+        working-directory: appium-test
+        run: npm run report
+
+      - name: Upload Appium/load test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-load-test-artifacts
+          path: |
+            appium-test/results/appium-results.json
+            appium-test/results/load-results.json
+            appium-test/reports/appium-load-test-summary.xlsx
+
+  final-summary:
+    name: Final CI Summary
+    runs-on: ubuntu-latest
+    needs:
+      - selenium-tests
+      - appium-load-tests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create consolidated summary
+        run: |
+          mkdir -p .github/actions-summary
+          echo "Selenium and Appium test workflow completed successfully." > .github/actions-summary/summary.txt
+          echo "Selenium report: selenium-test-artifacts" >> .github/actions-summary/summary.txt
+          echo "Appium & Load report: appium-load-test-artifacts" >> .github/actions-summary/summary.txt
+
+      - name: Upload summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-final-summary
+          path: .github/actions-summary/summary.txt

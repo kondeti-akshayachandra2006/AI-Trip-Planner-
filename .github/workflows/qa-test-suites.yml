@@ -1,0 +1,61 @@
+name: QA Test Suites (reports only)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  qa-test-reports:
+    name: Generate QA reports
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Install Selenium test dependencies
+        working-directory: frontend/selenium-tests
+        run: npm install
+
+      - name: Run Selenium login tests
+        working-directory: frontend/selenium-tests
+        run: npm run test:login
+
+      - name: Generate Selenium report
+        working-directory: frontend/selenium-tests
+        run: npm run generate:report
+
+      - name: Install Appium/load test dependencies
+        working-directory: appium-test
+        run: npm install
+
+      - name: Run Appium dry-run suite
+        working-directory: appium-test
+        run: npm run appium:dry-run
+
+      - name: Run load test suite
+        working-directory: appium-test
+        run: npm run load:test
+
+      - name: Generate Appium and load test report
+        working-directory: appium-test
+        run: npm run report
+
+      - name: Upload QA test suite report files
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-test-suite-reports
+          path: |
+            frontend/selenium-tests/tests/selenium-test-summary.json
+            frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
+            frontend/selenium-tests/artifacts
+            appium-test/results/appium-results.json
+            appium-test/results/load-results.json
+            appium-test/reports/appium-load-test-summary.xlsx
