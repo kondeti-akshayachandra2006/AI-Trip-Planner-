@@ -1,0 +1,14 @@
+{
+  "name": "pdd-appium-load-tests",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "appium:dry-run": "node scripts/appium-runner.js --dry-run",
+    "load:test": "node scripts/load-test.js",
+    "report": "node scripts/generate-report.js"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

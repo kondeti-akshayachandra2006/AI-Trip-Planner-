@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-08-06T19:45:32.159Z",
+  "baseUrl": "http://localhost:5173",
+  "results": [
+    {
+      "id": 1,
+      "title": "Loads login page",
+      "status": "PASS",
+      "details": "Login page rendered successfully."
+    },
+    {
+      "id": 2,
+      "title": "Shows password field",
+      "status": "PASS",
+      "details": "Password field is visible."
+    },
+    {
+      "id": 3,
+      "title": "Shows sign-in button",
+      "status": "PASS",
+      "details": "Sign In button is visible."
+    },
+    {
+      "id": 4,
+      "title": "Allows entering email",
+      "status": "PASS",
+      "details": "Email input accepted test value."
+    },
+    {
+      "id": 5,
+      "title": "Allows entering password",
+      "status": "PASS",
+      "details": "Password input accepted test value."
+    },
+    {
+      "id": 6,
+      "title": "Shows forgot password link",
+      "status": "PASS",
+      "details": "Forgot password link available."
+    },
+    {
+      "id": 7,
+      "title": "Shows sign-up prompt",
+      "status": "PASS",
+      "details": "Sign up prompt visible."
+    },
+    {
+      "id": 8,
+      "title": "Clears form fields after reset",
+      "status": "PASS",
+      "details": "Form fields cleared successfully."
+    },
+    {
+      "id": 9,
+      "title": "Accepts empty email validation path",
+      "status": "PASS",
+      "details": "Validation path triggered without crashing."
+    },
+    {
+      "id": 10,
+      "title": "Accepts empty password validation path",
+      "status": "PASS",
+      "details": "Validation path triggered without crashing."
+    }
+  ],
+  "total": 10,
+  "passed": 10,
+  "failed": 0
+}

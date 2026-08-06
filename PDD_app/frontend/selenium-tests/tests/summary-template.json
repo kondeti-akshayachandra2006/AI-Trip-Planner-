@@ -1,0 +1,27 @@
+{
+  "project": "PDD Web Frontend",
+  "generatedAt": "",
+  "totalTestCases": 305,
+  "cases": [
+    {"id": 1, "title": "Login page loads", "status": "PENDING", "details": "Verify login route renders."},
+    {"id": 2, "title": "Email field visible", "status": "PENDING", "details": "Verify email input is rendered."},
+    {"id": 3, "title": "Password field visible", "status": "PENDING", "details": "Verify password input is rendered."},
+    {"id": 4, "title": "Sign in button visible", "status": "PENDING", "details": "Verify CTA is available."},
+    {"id": 5, "title": "Forgot password link visible", "status": "PENDING", "details": "Verify recovery link appears."},
+    {"id": 6, "title": "Sign up prompt visible", "status": "PENDING", "details": "Verify sign-up path is visible."},
+    {"id": 7, "title": "Enter valid email", "status": "PENDING", "details": "Verify valid email is accepted."},
+    {"id": 8, "title": "Enter valid password", "status": "PENDING", "details": "Verify valid password is accepted."},
+    {"id": 9, "title": "Empty email validation", "status": "PENDING", "details": "Verify validation appears."},
+    {"id": 10, "title": "Empty password validation", "status": "PENDING", "details": "Verify password validation appears."},
+    {"id": 11, "title": "Invalid email format", "status": "PENDING", "details": "Verify invalid email is rejected."},
+    {"id": 12, "title": "Short password validation", "status": "PENDING", "details": "Verify short password is rejected."},
+    {"id": 13, "title": "Whitespace-only email", "status": "PENDING", "details": "Verify whitespace-only emails are rejected."},
+    {"id": 14, "title": "Whitespace-only password", "status": "PENDING", "details": "Verify whitespace-only passwords are rejected."},
+    {"id": 15, "title": "Password visibility toggle", "status": "PENDING", "details": "Verify eye toggle switches field type."},
+    {"id": 16, "title": "Authentication request starts", "status": "PENDING", "details": "Verify submit initiates request."},
+    {"id": 17, "title": "Successful login redirects", "status": "PENDING", "details": "Verify redirect to home occurs."},
+    {"id": 18, "title": "Failed login shows error", "status": "PENDING", "details": "Verify error message appears."},
+    {"id": 19, "title": "Browser back after login", "status": "PENDING", "details": "Verify navigation state remains consistent."},
+    {"id": 20, "title": "Session persistence", "status": "PENDING", "details": "Verify auth state persists after reload."}
+  ]
+}

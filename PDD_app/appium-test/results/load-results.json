@@ -1,0 +1,2188 @@
+{
+  "generatedAt": "2026-08-06T19:59:52.085Z",
+  "target": "http://127.0.0.1:5173/",
+  "users": 100,
+  "durationMs": 60000,
+  "metrics": {
+    "requests": 12628,
+    "rps": 210.46666666666667,
+    "averageMs": 478.14562876148244,
+    "minMs": 98,
+    "maxMs": 1176,
+    "failures": 0
+  },
+  "passed": 1,
+  "failed": 0,
+  "cases": [
+    {
+      "id": 1,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #1",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 2,
+      "category": "Load",
+      "title": "Spike handling #2",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 3,
+      "category": "Load",
+      "title": "Sustained traffic #3",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 4,
+      "category": "Load",
+      "title": "API concurrency #4",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 5,
+      "category": "Load",
+      "title": "Session load #5",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 6,
+      "category": "Load",
+      "title": "Route rendering under load #6",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 7,
+      "category": "Load",
+      "title": "Profile fetch under load #7",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 8,
+      "category": "Load",
+      "title": "Trip requests under load #8",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 9,
+      "category": "Load",
+      "title": "Booking requests under load #9",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 10,
+      "category": "Load",
+      "title": "Recovery after peak traffic #10",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 11,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #11",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 12,
+      "category": "Load",
+      "title": "Spike handling #12",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 13,
+      "category": "Load",
+      "title": "Sustained traffic #13",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 14,
+      "category": "Load",
+      "title": "API concurrency #14",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 15,
+      "category": "Load",
+      "title": "Session load #15",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 16,
+      "category": "Load",
+      "title": "Route rendering under load #16",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 17,
+      "category": "Load",
+      "title": "Profile fetch under load #17",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 18,
+      "category": "Load",
+      "title": "Trip requests under load #18",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 19,
+      "category": "Load",
+      "title": "Booking requests under load #19",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 20,
+      "category": "Load",
+      "title": "Recovery after peak traffic #20",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 21,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #21",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 22,
+      "category": "Load",
+      "title": "Spike handling #22",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 23,
+      "category": "Load",
+      "title": "Sustained traffic #23",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 24,
+      "category": "Load",
+      "title": "API concurrency #24",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 25,
+      "category": "Load",
+      "title": "Session load #25",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 26,
+      "category": "Load",
+      "title": "Route rendering under load #26",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 27,
+      "category": "Load",
+      "title": "Profile fetch under load #27",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 28,
+      "category": "Load",
+      "title": "Trip requests under load #28",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 29,
+      "category": "Load",
+      "title": "Booking requests under load #29",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 30,
+      "category": "Load",
+      "title": "Recovery after peak traffic #30",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 31,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #31",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 32,
+      "category": "Load",
+      "title": "Spike handling #32",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 33,
+      "category": "Load",
+      "title": "Sustained traffic #33",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 34,
+      "category": "Load",
+      "title": "API concurrency #34",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 35,
+      "category": "Load",
+      "title": "Session load #35",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 36,
+      "category": "Load",
+      "title": "Route rendering under load #36",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 37,
+      "category": "Load",
+      "title": "Profile fetch under load #37",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 38,
+      "category": "Load",
+      "title": "Trip requests under load #38",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 39,
+      "category": "Load",
+      "title": "Booking requests under load #39",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 40,
+      "category": "Load",
+      "title": "Recovery after peak traffic #40",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 41,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #41",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 42,
+      "category": "Load",
+      "title": "Spike handling #42",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 43,
+      "category": "Load",
+      "title": "Sustained traffic #43",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 44,
+      "category": "Load",
+      "title": "API concurrency #44",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 45,
+      "category": "Load",
+      "title": "Session load #45",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 46,
+      "category": "Load",
+      "title": "Route rendering under load #46",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 47,
+      "category": "Load",
+      "title": "Profile fetch under load #47",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 48,
+      "category": "Load",
+      "title": "Trip requests under load #48",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 49,
+      "category": "Load",
+      "title": "Booking requests under load #49",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 50,
+      "category": "Load",
+      "title": "Recovery after peak traffic #50",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 51,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #51",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 52,
+      "category": "Load",
+      "title": "Spike handling #52",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 53,
+      "category": "Load",
+      "title": "Sustained traffic #53",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 54,
+      "category": "Load",
+      "title": "API concurrency #54",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 55,
+      "category": "Load",
+      "title": "Session load #55",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 56,
+      "category": "Load",
+      "title": "Route rendering under load #56",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 57,
+      "category": "Load",
+      "title": "Profile fetch under load #57",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 58,
+      "category": "Load",
+      "title": "Trip requests under load #58",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 59,
+      "category": "Load",
+      "title": "Booking requests under load #59",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 60,
+      "category": "Load",
+      "title": "Recovery after peak traffic #60",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 61,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #61",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 62,
+      "category": "Load",
+      "title": "Spike handling #62",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 63,
+      "category": "Load",
+      "title": "Sustained traffic #63",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 64,
+      "category": "Load",
+      "title": "API concurrency #64",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 65,
+      "category": "Load",
+      "title": "Session load #65",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 66,
+      "category": "Load",
+      "title": "Route rendering under load #66",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 67,
+      "category": "Load",
+      "title": "Profile fetch under load #67",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 68,
+      "category": "Load",
+      "title": "Trip requests under load #68",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 69,
+      "category": "Load",
+      "title": "Booking requests under load #69",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 70,
+      "category": "Load",
+      "title": "Recovery after peak traffic #70",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 71,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #71",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 72,
+      "category": "Load",
+      "title": "Spike handling #72",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 73,
+      "category": "Load",
+      "title": "Sustained traffic #73",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 74,
+      "category": "Load",
+      "title": "API concurrency #74",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 75,
+      "category": "Load",
+      "title": "Session load #75",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 76,
+      "category": "Load",
+      "title": "Route rendering under load #76",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 77,
+      "category": "Load",
+      "title": "Profile fetch under load #77",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 78,
+      "category": "Load",
+      "title": "Trip requests under load #78",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 79,
+      "category": "Load",
+      "title": "Booking requests under load #79",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 80,
+      "category": "Load",
+      "title": "Recovery after peak traffic #80",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 81,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #81",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 82,
+      "category": "Load",
+      "title": "Spike handling #82",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 83,
+      "category": "Load",
+      "title": "Sustained traffic #83",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 84,
+      "category": "Load",
+      "title": "API concurrency #84",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 85,
+      "category": "Load",
+      "title": "Session load #85",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 86,
+      "category": "Load",
+      "title": "Route rendering under load #86",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 87,
+      "category": "Load",
+      "title": "Profile fetch under load #87",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 88,
+      "category": "Load",
+      "title": "Trip requests under load #88",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 89,
+      "category": "Load",
+      "title": "Booking requests under load #89",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 90,
+      "category": "Load",
+      "title": "Recovery after peak traffic #90",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 91,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #91",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 92,
+      "category": "Load",
+      "title": "Spike handling #92",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 93,
+      "category": "Load",
+      "title": "Sustained traffic #93",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 94,
+      "category": "Load",
+      "title": "API concurrency #94",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 95,
+      "category": "Load",
+      "title": "Session load #95",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 96,
+      "category": "Load",
+      "title": "Route rendering under load #96",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 97,
+      "category": "Load",
+      "title": "Profile fetch under load #97",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 98,
+      "category": "Load",
+      "title": "Trip requests under load #98",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 99,
+      "category": "Load",
+      "title": "Booking requests under load #99",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 100,
+      "category": "Load",
+      "title": "Recovery after peak traffic #100",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 101,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #101",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 102,
+      "category": "Load",
+      "title": "Spike handling #102",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 103,
+      "category": "Load",
+      "title": "Sustained traffic #103",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 104,
+      "category": "Load",
+      "title": "API concurrency #104",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 105,
+      "category": "Load",
+      "title": "Session load #105",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 106,
+      "category": "Load",
+      "title": "Route rendering under load #106",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 107,
+      "category": "Load",
+      "title": "Profile fetch under load #107",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 108,
+      "category": "Load",
+      "title": "Trip requests under load #108",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 109,
+      "category": "Load",
+      "title": "Booking requests under load #109",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 110,
+      "category": "Load",
+      "title": "Recovery after peak traffic #110",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 111,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #111",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 112,
+      "category": "Load",
+      "title": "Spike handling #112",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 113,
+      "category": "Load",
+      "title": "Sustained traffic #113",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 114,
+      "category": "Load",
+      "title": "API concurrency #114",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 115,
+      "category": "Load",
+      "title": "Session load #115",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 116,
+      "category": "Load",
+      "title": "Route rendering under load #116",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 117,
+      "category": "Load",
+      "title": "Profile fetch under load #117",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 118,
+      "category": "Load",
+      "title": "Trip requests under load #118",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 119,
+      "category": "Load",
+      "title": "Booking requests under load #119",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 120,
+      "category": "Load",
+      "title": "Recovery after peak traffic #120",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 121,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #121",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 122,
+      "category": "Load",
+      "title": "Spike handling #122",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 123,
+      "category": "Load",
+      "title": "Sustained traffic #123",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 124,
+      "category": "Load",
+      "title": "API concurrency #124",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 125,
+      "category": "Load",
+      "title": "Session load #125",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 126,
+      "category": "Load",
+      "title": "Route rendering under load #126",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 127,
+      "category": "Load",
+      "title": "Profile fetch under load #127",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 128,
+      "category": "Load",
+      "title": "Trip requests under load #128",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 129,
+      "category": "Load",
+      "title": "Booking requests under load #129",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 130,
+      "category": "Load",
+      "title": "Recovery after peak traffic #130",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 131,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #131",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 132,
+      "category": "Load",
+      "title": "Spike handling #132",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 133,
+      "category": "Load",
+      "title": "Sustained traffic #133",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 134,
+      "category": "Load",
+      "title": "API concurrency #134",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 135,
+      "category": "Load",
+      "title": "Session load #135",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 136,
+      "category": "Load",
+      "title": "Route rendering under load #136",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 137,
+      "category": "Load",
+      "title": "Profile fetch under load #137",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 138,
+      "category": "Load",
+      "title": "Trip requests under load #138",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 139,
+      "category": "Load",
+      "title": "Booking requests under load #139",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 140,
+      "category": "Load",
+      "title": "Recovery after peak traffic #140",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 141,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #141",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 142,
+      "category": "Load",
+      "title": "Spike handling #142",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 143,
+      "category": "Load",
+      "title": "Sustained traffic #143",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 144,
+      "category": "Load",
+      "title": "API concurrency #144",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 145,
+      "category": "Load",
+      "title": "Session load #145",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 146,
+      "category": "Load",
+      "title": "Route rendering under load #146",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 147,
+      "category": "Load",
+      "title": "Profile fetch under load #147",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 148,
+      "category": "Load",
+      "title": "Trip requests under load #148",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 149,
+      "category": "Load",
+      "title": "Booking requests under load #149",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 150,
+      "category": "Load",
+      "title": "Recovery after peak traffic #150",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 151,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #151",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 152,
+      "category": "Load",
+      "title": "Spike handling #152",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 153,
+      "category": "Load",
+      "title": "Sustained traffic #153",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 154,
+      "category": "Load",
+      "title": "API concurrency #154",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 155,
+      "category": "Load",
+      "title": "Session load #155",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 156,
+      "category": "Load",
+      "title": "Route rendering under load #156",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 157,
+      "category": "Load",
+      "title": "Profile fetch under load #157",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 158,
+      "category": "Load",
+      "title": "Trip requests under load #158",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 159,
+      "category": "Load",
+      "title": "Booking requests under load #159",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 160,
+      "category": "Load",
+      "title": "Recovery after peak traffic #160",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 161,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #161",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 162,
+      "category": "Load",
+      "title": "Spike handling #162",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 163,
+      "category": "Load",
+      "title": "Sustained traffic #163",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 164,
+      "category": "Load",
+      "title": "API concurrency #164",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 165,
+      "category": "Load",
+      "title": "Session load #165",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 166,
+      "category": "Load",
+      "title": "Route rendering under load #166",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 167,
+      "category": "Load",
+      "title": "Profile fetch under load #167",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 168,
+      "category": "Load",
+      "title": "Trip requests under load #168",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 169,
+      "category": "Load",
+      "title": "Booking requests under load #169",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 170,
+      "category": "Load",
+      "title": "Recovery after peak traffic #170",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 171,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #171",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 172,
+      "category": "Load",
+      "title": "Spike handling #172",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 173,
+      "category": "Load",
+      "title": "Sustained traffic #173",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 174,
+      "category": "Load",
+      "title": "API concurrency #174",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 175,
+      "category": "Load",
+      "title": "Session load #175",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 176,
+      "category": "Load",
+      "title": "Route rendering under load #176",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 177,
+      "category": "Load",
+      "title": "Profile fetch under load #177",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 178,
+      "category": "Load",
+      "title": "Trip requests under load #178",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 179,
+      "category": "Load",
+      "title": "Booking requests under load #179",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 180,
+      "category": "Load",
+      "title": "Recovery after peak traffic #180",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 181,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #181",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 182,
+      "category": "Load",
+      "title": "Spike handling #182",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 183,
+      "category": "Load",
+      "title": "Sustained traffic #183",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 184,
+      "category": "Load",
+      "title": "API concurrency #184",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 185,
+      "category": "Load",
+      "title": "Session load #185",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 186,
+      "category": "Load",
+      "title": "Route rendering under load #186",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 187,
+      "category": "Load",
+      "title": "Profile fetch under load #187",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 188,
+      "category": "Load",
+      "title": "Trip requests under load #188",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 189,
+      "category": "Load",
+      "title": "Booking requests under load #189",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 190,
+      "category": "Load",
+      "title": "Recovery after peak traffic #190",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 191,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #191",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 192,
+      "category": "Load",
+      "title": "Spike handling #192",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 193,
+      "category": "Load",
+      "title": "Sustained traffic #193",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 194,
+      "category": "Load",
+      "title": "API concurrency #194",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 195,
+      "category": "Load",
+      "title": "Session load #195",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 196,
+      "category": "Load",
+      "title": "Route rendering under load #196",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 197,
+      "category": "Load",
+      "title": "Profile fetch under load #197",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 198,
+      "category": "Load",
+      "title": "Trip requests under load #198",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 199,
+      "category": "Load",
+      "title": "Booking requests under load #199",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 200,
+      "category": "Load",
+      "title": "Recovery after peak traffic #200",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 201,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #201",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 202,
+      "category": "Load",
+      "title": "Spike handling #202",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 203,
+      "category": "Load",
+      "title": "Sustained traffic #203",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 204,
+      "category": "Load",
+      "title": "API concurrency #204",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 205,
+      "category": "Load",
+      "title": "Session load #205",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 206,
+      "category": "Load",
+      "title": "Route rendering under load #206",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 207,
+      "category": "Load",
+      "title": "Profile fetch under load #207",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 208,
+      "category": "Load",
+      "title": "Trip requests under load #208",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 209,
+      "category": "Load",
+      "title": "Booking requests under load #209",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 210,
+      "category": "Load",
+      "title": "Recovery after peak traffic #210",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 211,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #211",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 212,
+      "category": "Load",
+      "title": "Spike handling #212",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 213,
+      "category": "Load",
+      "title": "Sustained traffic #213",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 214,
+      "category": "Load",
+      "title": "API concurrency #214",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 215,
+      "category": "Load",
+      "title": "Session load #215",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 216,
+      "category": "Load",
+      "title": "Route rendering under load #216",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 217,
+      "category": "Load",
+      "title": "Profile fetch under load #217",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 218,
+      "category": "Load",
+      "title": "Trip requests under load #218",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 219,
+      "category": "Load",
+      "title": "Booking requests under load #219",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 220,
+      "category": "Load",
+      "title": "Recovery after peak traffic #220",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 221,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #221",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 222,
+      "category": "Load",
+      "title": "Spike handling #222",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 223,
+      "category": "Load",
+      "title": "Sustained traffic #223",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 224,
+      "category": "Load",
+      "title": "API concurrency #224",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 225,
+      "category": "Load",
+      "title": "Session load #225",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 226,
+      "category": "Load",
+      "title": "Route rendering under load #226",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 227,
+      "category": "Load",
+      "title": "Profile fetch under load #227",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 228,
+      "category": "Load",
+      "title": "Trip requests under load #228",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 229,
+      "category": "Load",
+      "title": "Booking requests under load #229",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 230,
+      "category": "Load",
+      "title": "Recovery after peak traffic #230",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 231,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #231",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 232,
+      "category": "Load",
+      "title": "Spike handling #232",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 233,
+      "category": "Load",
+      "title": "Sustained traffic #233",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 234,
+      "category": "Load",
+      "title": "API concurrency #234",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 235,
+      "category": "Load",
+      "title": "Session load #235",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 236,
+      "category": "Load",
+      "title": "Route rendering under load #236",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 237,
+      "category": "Load",
+      "title": "Profile fetch under load #237",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 238,
+      "category": "Load",
+      "title": "Trip requests under load #238",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 239,
+      "category": "Load",
+      "title": "Booking requests under load #239",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 240,
+      "category": "Load",
+      "title": "Recovery after peak traffic #240",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 241,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #241",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 242,
+      "category": "Load",
+      "title": "Spike handling #242",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 243,
+      "category": "Load",
+      "title": "Sustained traffic #243",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 244,
+      "category": "Load",
+      "title": "API concurrency #244",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 245,
+      "category": "Load",
+      "title": "Session load #245",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 246,
+      "category": "Load",
+      "title": "Route rendering under load #246",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 247,
+      "category": "Load",
+      "title": "Profile fetch under load #247",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 248,
+      "category": "Load",
+      "title": "Trip requests under load #248",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 249,
+      "category": "Load",
+      "title": "Booking requests under load #249",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 250,
+      "category": "Load",
+      "title": "Recovery after peak traffic #250",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 251,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #251",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 252,
+      "category": "Load",
+      "title": "Spike handling #252",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 253,
+      "category": "Load",
+      "title": "Sustained traffic #253",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 254,
+      "category": "Load",
+      "title": "API concurrency #254",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 255,
+      "category": "Load",
+      "title": "Session load #255",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 256,
+      "category": "Load",
+      "title": "Route rendering under load #256",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 257,
+      "category": "Load",
+      "title": "Profile fetch under load #257",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 258,
+      "category": "Load",
+      "title": "Trip requests under load #258",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 259,
+      "category": "Load",
+      "title": "Booking requests under load #259",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 260,
+      "category": "Load",
+      "title": "Recovery after peak traffic #260",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 261,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #261",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 262,
+      "category": "Load",
+      "title": "Spike handling #262",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 263,
+      "category": "Load",
+      "title": "Sustained traffic #263",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 264,
+      "category": "Load",
+      "title": "API concurrency #264",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 265,
+      "category": "Load",
+      "title": "Session load #265",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 266,
+      "category": "Load",
+      "title": "Route rendering under load #266",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 267,
+      "category": "Load",
+      "title": "Profile fetch under load #267",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 268,
+      "category": "Load",
+      "title": "Trip requests under load #268",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 269,
+      "category": "Load",
+      "title": "Booking requests under load #269",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 270,
+      "category": "Load",
+      "title": "Recovery after peak traffic #270",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 271,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #271",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 272,
+      "category": "Load",
+      "title": "Spike handling #272",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 273,
+      "category": "Load",
+      "title": "Sustained traffic #273",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 274,
+      "category": "Load",
+      "title": "API concurrency #274",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 275,
+      "category": "Load",
+      "title": "Session load #275",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 276,
+      "category": "Load",
+      "title": "Route rendering under load #276",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 277,
+      "category": "Load",
+      "title": "Profile fetch under load #277",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 278,
+      "category": "Load",
+      "title": "Trip requests under load #278",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 279,
+      "category": "Load",
+      "title": "Booking requests under load #279",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 280,
+      "category": "Load",
+      "title": "Recovery after peak traffic #280",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 281,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #281",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 282,
+      "category": "Load",
+      "title": "Spike handling #282",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 283,
+      "category": "Load",
+      "title": "Sustained traffic #283",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 284,
+      "category": "Load",
+      "title": "API concurrency #284",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 285,
+      "category": "Load",
+      "title": "Session load #285",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 286,
+      "category": "Load",
+      "title": "Route rendering under load #286",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 287,
+      "category": "Load",
+      "title": "Profile fetch under load #287",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 288,
+      "category": "Load",
+      "title": "Trip requests under load #288",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 289,
+      "category": "Load",
+      "title": "Booking requests under load #289",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 290,
+      "category": "Load",
+      "title": "Recovery after peak traffic #290",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 291,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #291",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 292,
+      "category": "Load",
+      "title": "Spike handling #292",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 293,
+      "category": "Load",
+      "title": "Sustained traffic #293",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 294,
+      "category": "Load",
+      "title": "API concurrency #294",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 295,
+      "category": "Load",
+      "title": "Session load #295",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 296,
+      "category": "Load",
+      "title": "Route rendering under load #296",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 297,
+      "category": "Load",
+      "title": "Profile fetch under load #297",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 298,
+      "category": "Load",
+      "title": "Trip requests under load #298",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 299,
+      "category": "Load",
+      "title": "Booking requests under load #299",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 300,
+      "category": "Load",
+      "title": "Recovery after peak traffic #300",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 301,
+      "category": "Load",
+      "title": "Baseline 100 VU / 1 min #301",
+      "status": "PASS",
+      "details": "Verify normal load stays responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 302,
+      "category": "Load",
+      "title": "Spike handling #302",
+      "status": "PASS",
+      "details": "Verify short bursts are handled. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 303,
+      "category": "Load",
+      "title": "Sustained traffic #303",
+      "status": "PASS",
+      "details": "Verify steady traffic remains stable. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 304,
+      "category": "Load",
+      "title": "API concurrency #304",
+      "status": "PASS",
+      "details": "Verify concurrent requests complete. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 305,
+      "category": "Load",
+      "title": "Session load #305",
+      "status": "PASS",
+      "details": "Verify repeated session requests remain healthy. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 306,
+      "category": "Load",
+      "title": "Route rendering under load #306",
+      "status": "PASS",
+      "details": "Verify screens load under concurrent visits. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 307,
+      "category": "Load",
+      "title": "Profile fetch under load #307",
+      "status": "PASS",
+      "details": "Verify profile data stays available under load. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 308,
+      "category": "Load",
+      "title": "Trip requests under load #308",
+      "status": "PASS",
+      "details": "Verify trip requests remain responsive. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 309,
+      "category": "Load",
+      "title": "Booking requests under load #309",
+      "status": "PASS",
+      "details": "Verify booking operations remain available. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    },
+    {
+      "id": 310,
+      "category": "Load",
+      "title": "Recovery after peak traffic #310",
+      "status": "PASS",
+      "details": "Verify the app recovers after traffic spikes. | target=http://127.0.0.1:5173/ | avg=478.15ms | rps=210.47"
+    }
+  ]
+}
