@@ -71,7 +71,8 @@ jobs:
         working-directory: PDD_app
         run: |
           npm install --legacy-peer-deps
-          nohup npm run dev -- --host 0.0.0.0 > /tmp/pdd-web.log 2>&1 &
+          npm run build
+          nohup npx vite preview --host 0.0.0.0 --port 5173 > /tmp/pdd-web.log 2>&1 &
           for attempt in {1..30}; do
             if curl --fail --silent http://127.0.0.1:5173/login > /dev/null; then
               exit 0
