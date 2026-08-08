@@ -14,7 +14,21 @@ async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+async function waitForWebApp() {
+  for (let attempt = 1; attempt <= 20; attempt += 1) {
+    try {
+      const response = await fetch(`${baseUrl}/login`);
+      if (response.ok) return;
+    } catch {
+      // The workflow may still be starting the preview server.
+    }
+    await sleep(1000);
+  }
+  throw new Error(`Web application did not become ready at ${baseUrl}/login`);
+}
+
 async function runLoginSuite() {
+  await waitForWebApp();
   const options = new chrome.Options();
   options.addArguments('--headless=new');
   options.addArguments('--no-sandbox');
