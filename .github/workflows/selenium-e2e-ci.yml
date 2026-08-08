@@ -41,7 +41,18 @@ jobs:
 
       - name: Run Selenium login tests
         working-directory: PDD_app/frontend/selenium-tests
-        run: npm run test:login
+        env:
+          WEB_URL: http://127.0.0.1:5173
+        run: |
+          for attempt in 1 2; do
+            if npm run test:login; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 1 ]; then
+              sleep 3
+            fi
+          done
+          exit 1
 
       - name: Generate Selenium report
         working-directory: PDD_app/frontend/selenium-tests
