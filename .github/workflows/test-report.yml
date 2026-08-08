@@ -25,22 +25,8 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-        - name: Install and start web application
-          working-directory: PDD_app
-          run: |
-            npm install
-            nohup npm run dev -- --host 0.0.0.0 > /tmp/pdd-web.log 2>&1 &
-            for attempt in {1..30}; do
-              if curl --fail --silent http://127.0.0.1:5173/login > /dev/null; then
-                exit 0
-              fi
-              sleep 2
-            done
-            cat /tmp/pdd-web.log
-            exit 1
-
       - name: Install root dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Install backend dependencies
         run: |
@@ -80,6 +66,20 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '20'
+
+      - name: Install and start web application
+        working-directory: PDD_app
+        run: |
+          npm install --legacy-peer-deps
+          nohup npm run dev -- --host 0.0.0.0 > /tmp/pdd-web.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:5173/login > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/pdd-web.log
+          exit 1
 
       - name: Install Selenium test dependencies
         working-directory: PDD_app/frontend/selenium-tests
