@@ -28,11 +28,20 @@ jobs:
         working-directory: PDD_app/appium-test
         run: npm install
 
-      - name: Ensure report files exist
+      - name: Generate Selenium report
+        working-directory: PDD_app/frontend/selenium-tests
+        run: npm run generate:report
+
+      - name: Generate Appium and load reports
+        working-directory: PDD_app/appium-test
+        env:
+          LOAD_TARGET: https://example.com/
+          LOAD_USERS: 100
+          LOAD_DURATION_MS: 30000
         run: |
-          mkdir -p PDD_app/frontend/selenium-tests/tests
-          mkdir -p PDD_app/appium-test/results
-          mkdir -p PDD_app/appium-test/reports
+          npm run appium:dry-run
+          npm run load:test
+          npm run report
 
       - name: Upload QA report artifact files
         uses: actions/upload-artifact@v4

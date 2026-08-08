@@ -26,6 +26,7 @@ jobs:
           cache: 'npm'
 
       - name: Install root dependencies
+        working-directory: PDD_app
         run: npm install --legacy-peer-deps
 
       - name: Install backend dependencies
