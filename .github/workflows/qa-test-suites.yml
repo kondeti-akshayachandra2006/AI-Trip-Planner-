@@ -21,31 +21,31 @@ jobs:
           node-version: '20'
 
       - name: Install Selenium test dependencies
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm install
 
       - name: Run Selenium login tests
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm run test:login
 
       - name: Generate Selenium report
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm run generate:report
 
       - name: Install Appium/load test dependencies
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm install
 
       - name: Run Appium dry-run suite
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm run appium:dry-run
 
       - name: Run load test suite
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm run load:test
 
       - name: Generate Appium and load test report
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm run report
 
       - name: Upload QA test suite report files
@@ -53,9 +53,9 @@ jobs:
         with:
           name: qa-test-suite-reports
           path: |
-            frontend/selenium-tests/tests/selenium-test-summary.json
-            frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
-            frontend/selenium-tests/artifacts
-            appium-test/results/appium-results.json
-            appium-test/results/load-results.json
-            appium-test/reports/appium-load-test-summary.xlsx
+            PDD_app/frontend/selenium-tests/tests/selenium-test-summary.json
+            PDD_app/frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
+            PDD_app/frontend/selenium-tests/artifacts
+            PDD_app/appium-test/results/appium-results.json
+            PDD_app/appium-test/results/load-results.json
+            PDD_app/appium-test/reports/appium-load-test-summary.xlsx

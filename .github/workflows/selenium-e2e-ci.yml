@@ -21,15 +21,15 @@ jobs:
           node-version: '20'
 
       - name: Install Selenium dependencies
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm install
 
       - name: Run Selenium login tests
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm run test:login
 
       - name: Generate Selenium report
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm run generate:report
 
       - name: Upload Selenium report artifacts
@@ -37,5 +37,5 @@ jobs:
         with:
           name: selenium-e2e-ci-artifacts
           path: |
-            frontend/selenium-tests/tests/selenium-test-summary.json
-            frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
+            PDD_app/frontend/selenium-tests/tests/selenium-test-summary.json
+            PDD_app/frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx

@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   setup:
@@ -29,29 +30,29 @@ jobs:
 
       - name: Install backend dependencies
         run: |
-          cd backend
+          cd PDD_app/backend
           npm install
 
       - name: Install frontend dependencies
         run: |
-          cd frontend
+          cd PDD_app/frontend
           npm install
 
       - name: Install Selenium tests dependencies
         run: |
-          cd frontend/selenium-tests
+          cd PDD_app/frontend/selenium-tests
           npm install
 
       - name: Install Appium/load test dependencies
         run: |
-          cd appium-test
+          cd PDD_app/appium-test
           npm install
 
       - name: Create results directories
         run: |
-          mkdir -p frontend/selenium-tests/artifacts
-          mkdir -p appium-test/results
-          mkdir -p appium-test/reports
+          mkdir -p PDD_app/frontend/selenium-tests/artifacts
+          mkdir -p PDD_app/appium-test/results
+          mkdir -p PDD_app/appium-test/reports
 
   selenium-tests:
     name: Selenium Tests and Report
@@ -67,15 +68,15 @@ jobs:
           node-version: '20'
 
       - name: Install Selenium test dependencies
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm install
 
       - name: Run Selenium login tests
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm run test:login
 
       - name: Generate Selenium Excel report
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm run generate:report
 
       - name: Upload Selenium artifacts
@@ -83,9 +84,9 @@ jobs:
         with:
           name: selenium-test-artifacts
           path: |
-            frontend/selenium-tests/tests/selenium-test-summary.json
-            frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
-            frontend/selenium-tests/artifacts
+            PDD_app/frontend/selenium-tests/tests/selenium-test-summary.json
+            PDD_app/frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
+            PDD_app/frontend/selenium-tests/artifacts
 
   appium-load-tests:
     name: Appium + Load Tests and Report
@@ -101,19 +102,19 @@ jobs:
           node-version: '20'
 
       - name: Install Appium/load test dependencies
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm install
 
       - name: Run Appium dry-run test suite
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm run appium:dry-run
 
       - name: Run load test suite
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm run load:test
 
       - name: Generate Appium and load test Excel report
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm run report
 
       - name: Upload Appium/load test artifacts
@@ -121,9 +122,9 @@ jobs:
         with:
           name: appium-load-test-artifacts
           path: |
-            appium-test/results/appium-results.json
-            appium-test/results/load-results.json
-            appium-test/reports/appium-load-test-summary.xlsx
+            PDD_app/appium-test/results/appium-results.json
+            PDD_app/appium-test/results/load-results.json
+            PDD_app/appium-test/reports/appium-load-test-summary.xlsx
 
   final-summary:
     name: Final CI Summary

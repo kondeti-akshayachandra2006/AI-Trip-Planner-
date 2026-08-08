@@ -21,26 +21,26 @@ jobs:
           node-version: '20'
 
       - name: Install Selenium test dependencies
-        working-directory: frontend/selenium-tests
+        working-directory: PDD_app/frontend/selenium-tests
         run: npm install
 
       - name: Install Appium/load test dependencies
-        working-directory: appium-test
+        working-directory: PDD_app/appium-test
         run: npm install
 
       - name: Ensure report files exist
         run: |
-          mkdir -p frontend/selenium-tests/tests
-          mkdir -p appium-test/results
-          mkdir -p appium-test/reports
+          mkdir -p PDD_app/frontend/selenium-tests/tests
+          mkdir -p PDD_app/appium-test/results
+          mkdir -p PDD_app/appium-test/reports
 
       - name: Upload QA report artifact files
         uses: actions/upload-artifact@v4
         with:
           name: qa-report-files
           path: |
-            frontend/selenium-tests/tests/selenium-test-summary.json
-            frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
-            appium-test/results/appium-results.json
-            appium-test/results/load-results.json
-            appium-test/reports/appium-load-test-summary.xlsx
+            PDD_app/frontend/selenium-tests/tests/selenium-test-summary.json
+            PDD_app/frontend/selenium-tests/tests/Selenium_E2E_Report_2026-08-04.xlsx
+            PDD_app/appium-test/results/appium-results.json
+            PDD_app/appium-test/results/load-results.json
+            PDD_app/appium-test/reports/appium-load-test-summary.xlsx
