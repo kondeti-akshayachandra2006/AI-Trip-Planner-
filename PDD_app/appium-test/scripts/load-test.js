@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
@@ -9,47 +10,55 @@ function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-function requestOnce(url) {
+function getClient(url) {
+  if (url.protocol === 'http:') {
+    return http;
+  }
+
+  if (url.protocol === 'https:') {
+    return https;
+  }
+
+  throw new Error(`Unsupported protocol "${url.protocol}". Expected "http:" or "https:"`);
+}
+
+function requestOnce(target) {
   return new Promise((resolve) => {
+    const url = new URL(target);
+    const client = getClient(url);
     const start = Date.now();
-    const req = http.get(url, (res) => {
+    let settled = false;
+
+    function finish(result) {
+      if (settled) {
+        return;
+      }
+
+      settled = true;
+      resolve(result);
+    }
+
+    const req = client.get(url, (res) => {
       let body = '';
-      res.on('data', (chunk) => { body += chunk; });
+      res.on('data', (chunk) => {
+        body += chunk;
+      });
       res.on('end', () => {
-        resolve({ statusCode: res.statusCode, latencyMs: Date.now() - start, bodyLength: body.length });
+        finish({ statusCode: res.statusCode, latencyMs: Date.now() - start, bodyLength: body.length });
       });
     });
 
     req.on('error', () => {
-      resolve({ statusCode: 0, latencyMs: Date.now() - start, bodyLength: 0 });
+      finish({ statusCode: 0, latencyMs: Date.now() - start, bodyLength: 0 });
     });
     req.setTimeout(3000, () => {
       req.destroy();
-      resolve({ statusCode: 0, latencyMs: 3000, bodyLength: 0 });
+      finish({ statusCode: 0, latencyMs: 3000, bodyLength: 0 });
     });
   });
 }
 
-async function runLoadTest() {
-  const target = process.env.LOAD_TARGET || 'http://127.0.0.1:5173/';
-  const users = Number(process.env.LOAD_USERS || 100);
-  const durationMs = Number(process.env.LOAD_DURATION_MS || 60000);
-  const startTime = Date.now();
-  const timings = [];
-  const failures = [];
-
-  const workers = Array.from({ length: users }, async () => {
-    while (Date.now() - startTime < durationMs) {
-      const result = await requestOnce(target);
-      timings.push(result.latencyMs);
-      if (result.statusCode < 200 || result.statusCode >= 400) {
-        failures.push(result.statusCode);
-      }
-    }
-  });
-
-  await Promise.all(workers);
-
+function buildSummary(target, users, durationMs, timings, failures) {
   const avg = timings.length ? timings.reduce((a, b) => a + b, 0) / timings.length : 0;
   const max = timings.length ? Math.max(...timings) : 0;
   const min = timings.length ? Math.min(...timings) : 0;
@@ -80,7 +89,7 @@ async function runLoadTest() {
     };
   });
 
-  const summary = {
+  return {
     generatedAt: new Date().toISOString(),
     target,
     users,
@@ -90,10 +99,33 @@ async function runLoadTest() {
     failed: passed ? 0 : 1,
     cases,
   };
+}
+
+async function runLoadTest() {
+  const target = process.env.LOAD_TARGET || 'https://example.com/';
+  const users = Number(process.env.LOAD_USERS || 20);
+  const durationMs = Number(process.env.LOAD_DURATION_MS || 20000);
+  const startTime = Date.now();
+  const timings = [];
+  const failures = [];
+
+  const workers = Array.from({ length: users }, async () => {
+    while (Date.now() - startTime < durationMs) {
+      const result = await requestOnce(target);
+      timings.push(result.latencyMs);
+      if (result.statusCode < 200 || result.statusCode >= 400) {
+        failures.push(result.statusCode);
+      }
+    }
+  });
+
+  await Promise.all(workers);
+
+  const summary = buildSummary(target, users, durationMs, timings, failures);
 
   ensureDir(outputDir);
   fs.writeFileSync(outputFile, JSON.stringify(summary, null, 2));
-  console.log(`Load test completed. Requests=${timings.length}, RPS=${rps.toFixed(2)}, Avg=${avg.toFixed(2)}ms`);
+  console.log(`Load test completed. Requests=${summary.metrics.requests}, RPS=${summary.metrics.rps.toFixed(2)}, Avg=${summary.metrics.averageMs.toFixed(2)}ms`);
   console.log(`Results written to ${outputFile}`);
 }
 

@@ -35,7 +35,7 @@ jobs:
       - name: Generate Appium and load reports
         working-directory: PDD_app/appium-test
         env:
-          LOAD_TARGET: https://example.com/
+          LOAD_TARGET: http://example.com/
           LOAD_USERS: 100
           LOAD_DURATION_MS: 30000
         run: |
