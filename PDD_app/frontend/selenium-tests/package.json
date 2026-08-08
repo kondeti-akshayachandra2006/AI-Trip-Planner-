@@ -8,7 +8,6 @@
     "generate:report": "node scripts/generate-310-report.js"
   },
   "dependencies": {
-    "chromedriver": "^130.0.0",
     "selenium-webdriver": "^4.24.0",
     "xlsx": "^0.18.5"
   }
