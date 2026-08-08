@@ -16,8 +16,10 @@ async function sleep(ms) {
 
 async function runLoginSuite() {
   const options = new chrome.Options();
+  options.addArguments('--headless=new');
   options.addArguments('--no-sandbox');
   options.addArguments('--disable-dev-shm-usage');
+  options.addArguments('--disable-gpu');
   options.addArguments('--window-size=1440,1200');
 
   const driver = await new Builder()
@@ -137,6 +139,9 @@ async function runLoginSuite() {
     fs.writeFileSync(summaryPath, JSON.stringify({ generatedAt: new Date().toISOString(), baseUrl, results, total: results.length, passed: results.filter((r) => r.status === 'PASS').length, failed: results.filter((r) => r.status === 'FAIL').length }, null, 2));
     console.log(`Completed ${results.length} Selenium login test cases.`);
     console.log(JSON.stringify(results.slice(0, 10), null, 2));
+    if (results.some((result) => result.status === 'FAIL')) {
+      process.exitCode = 1;
+    }
   } finally {
     await driver.quit();
   }
