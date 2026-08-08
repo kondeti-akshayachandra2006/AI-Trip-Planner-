@@ -57,11 +57,11 @@ jobs:
 
       - name: Run load test suite
         working-directory: PDD_app/appium-test
-        run: npm run load:test
+        run: node scripts/load-test.js
 
       - name: Generate Appium and load test report
         working-directory: PDD_app/appium-test
-        run: npm run report
+        run: node scripts/generate-report.js
 
       - name: Upload QA test suite report files
         uses: actions/upload-artifact@v4

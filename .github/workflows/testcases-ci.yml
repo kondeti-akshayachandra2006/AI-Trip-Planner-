@@ -87,11 +87,11 @@ jobs:
           LOAD_TARGET: https://example.com/
           LOAD_USERS: 100
           LOAD_DURATION_MS: 30000
-        run: npm run load:test
+        run: node scripts/load-test.js
 
       - name: Generate Appium and load test report
         working-directory: PDD_app/appium-test
-        run: npm run report
+        run: node scripts/generate-report.js
 
       - name: Upload Load and Appium report artifacts
         uses: actions/upload-artifact@v4

@@ -40,8 +40,8 @@ jobs:
           LOAD_DURATION_MS: 30000
         run: |
           npm run appium:dry-run
-          npm run load:test
-          npm run report
+          node scripts/load-test.js
+          node scripts/generate-report.js
 
       - name: Upload QA report artifact files
         uses: actions/upload-artifact@v4
